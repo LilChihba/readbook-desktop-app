@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ReadBook
 {
@@ -19,18 +10,13 @@ namespace ReadBook
     /// </summary>
     public partial class Auth : Window
     {
+        SqlConnection connection;
+
         public Auth()
         {
+            string conStr = @"workstation id=mydbreadbook.mssql.somee.com;packet size=4096;user id=danila-yurov_SQLLogin_1;pwd=788domkbj4;data source=mydbreadbook.mssql.somee.com;persist security info=False;initial catalog=mydbreadbook";
+            connection = new SqlConnection(conStr);
             InitializeComponent();
-            loginTextBox.Text = "Логин";
-            loginTextBox.Foreground = Brushes.LightGray;
-            loginTextBox.GotFocus += RemoveText;
-            loginTextBox.LostFocus += AddText;
-
-            passwordTextBox.Password = "Пароль";
-            passwordTextBox.Foreground = Brushes.LightGray;
-            passwordTextBox.GotFocus += RemoveText;
-            passwordTextBox.LostFocus += AddText;
         }
 
         private void ToolBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -51,32 +37,63 @@ namespace ReadBook
             this.WindowState = WindowState.Minimized;
         }
 
-        public void RemoveText(object sender, EventArgs e)
+        private void passwordTextBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (loginTextBox.Text == "Логин")
+            if (passwordTextBox.Password.Length > 0)
             {
-                loginTextBox.Text = "";
-                loginTextBox.Foreground = Brushes.Black;
+                waterMarkPassword.Visibility = Visibility.Collapsed;
             }
-            if (passwordTextBox.Password == "Пароль")
+            else
             {
-                passwordTextBox.Password = "";
-                passwordTextBox.Foreground = Brushes.Black;
+                waterMarkPassword.Visibility = Visibility.Visible;
             }
         }
 
-        public void AddText(object sender, EventArgs e)
+        private void authBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(loginTextBox.Text))
+            try
             {
-                loginTextBox.Text = "Логин";
-                loginTextBox.Foreground = Brushes.LightGray;
+                connection.Open();
+                SqlCommand query = new SqlCommand("SELECT * FROM Читатели WHERE Логин=@login and Пароль=@password", connection);
+
+                bool access = false;
+
+                query.Parameters.AddWithValue("@login", loginTextBox.Text);
+                query.Parameters.AddWithValue("@password", passwordTextBox.Password);
+
+                SqlDataReader reader = query.ExecuteReader();
+                while(reader.Read())
+                {
+                    access = true;
+                }
+                reader.Close();
+
+                if(access)
+                {
+                    MainWindow window = new MainWindow();
+                    window.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Вы ввели неверный логин или пароль! Повторите попытку", "Ошибка");
+                }
             }
-            if (string.IsNullOrWhiteSpace(passwordTextBox.Password))
+            catch(Exception ex)
             {
-                passwordTextBox.Password = "Пароль";
-                passwordTextBox.Foreground = Brushes.LightGray;
+                MessageBox.Show(ex.ToString(), "Ошибка подключения");
             }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        private void regBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Reg window = new Reg();
+            window.Show();
+            this.Close();
         }
     }
 }

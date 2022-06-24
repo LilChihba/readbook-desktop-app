@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ReadBook"
         mc:Ignorable="d"
         Title="Регистрация"
-        Height="550" Width="800"
+        Height="550" Width="500"
         WindowStyle="None" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
@@ -26,8 +26,8 @@
         </Grid.Background>
 
         <Grid Grid.ColumnSpan="3" x:Name="ToolBar" VerticalAlignment="Top" Background="Transparent" MouseDown="ToolBar_MouseDown" Height="25">
-            <Image x:Name="ExitImage" Source="pack://application:,,,/Resources/Images/Menu/close.png" Width="30" Height="20" Margin="765,0,0,0" MouseDown="ExitImage_MouseDown"/>
-            <Image x:Name="RollupImage" Source="pack://application:,,,/Resources/Images/Menu/rollup.png" Width="30" Height="20" Margin="701,0,0,0" MouseDown="RollupImage_MouseDown"/>
+            <Image x:Name="ExitImage" Source="pack://application:,,,/Resources/Images/Menu/close.png" Width="30" Height="20" Margin="470,0,0,0" MouseDown="ExitImage_MouseDown"/>
+            <Image x:Name="RollupImage" Source="pack://application:,,,/Resources/Images/Menu/rollup.png" Width="30" Height="20" Margin="408,0,0,0" MouseDown="RollupImage_MouseDown"/>
         </Grid>
 
         <Label Content="Создать учётную запись" Style="{StaticResource LabelBorder}" FontSize="27" Foreground="#FFFFB100" FontWeight="ExtraBold" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="350" Height="50" Margin="0,25,0,0"/>

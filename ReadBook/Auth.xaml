@@ -39,11 +39,11 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <Image Source="pack://application:,,,/Resources/Images/iconlogin.png" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,22,0,0"/>
+                <Image Source="pack://application:,,,/Resources/Images/iconlogin.png" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,27,0,0"/>
 
                 <PasswordBox x:Name="passwordTextBox" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="200" Height="35" Padding="28,0,0,2" Margin="0,0,0,40" PasswordChanged="passwordTextBox_PasswordChanged" Foreground="#FF5A5A5A"/>
                 <TextBlock x:Name="waterMarkPassword" FontSize="14" Text="Пароль" Foreground="LightGray" IsHitTestVisible="False" Width="200" Height="35" Padding="30,8,0,0" Margin="0,0,0,40"/>
-                <Image Source="pack://application:,,,/Resources/Images/iconpassword.png" Height="27" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7,0,0,40"/>
+                <Image Source="pack://application:,,,/Resources/Images/iconpassword.png" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,39"/>
 
                 <CheckBox x:Name="autologinTextBot" Content="Автоматический вход" Style="{StaticResource CustomFont}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="3,1,0,0" Margin="0,20,0,0"></CheckBox>
                 

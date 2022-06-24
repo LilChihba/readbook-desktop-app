@@ -133,6 +133,7 @@ namespace ReadBook
                     {
                         okImg.Visibility = Visibility.Hidden;
                         nonokImg.Visibility = Visibility.Visible;
+                        break;
                     }
                     else
                     {

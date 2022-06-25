@@ -46,7 +46,7 @@
                 <TextBlock x:Name="waterMarkPassword" FontSize="14" Text="Пароль" Style="{StaticResource CustomFont}" Foreground="LightGray" IsHitTestVisible="False" Width="200" Height="35" Padding="30,10,0,0" Margin="0,0,0,40"/>
                 <Image Source="pack://application:,,,/Resources/Images/iconpassword.png" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,39"/>
 
-                <CheckBox x:Name="autologinCheckBox" Content="Автоматический вход" Style="{StaticResource CustomFont}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="3,1,0,0" Margin="0,20,0,0" Checked="autologinCheckBox_Checked" Unchecked="autologinCheckBox_Unchecked"/>
+                <CheckBox x:Name="autologinCheckBox" Content="Автоматический вход" Style="{StaticResource CustomFont}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="3,1,0,0" Margin="0,20,0,0"/>
 
                 <Button x:Name="authBtn" Content="Авторизация" Style="{StaticResource CustomFont}" Width="200" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,80,0,0" Click="authBtn_Click"/>
                 <Button x:Name="regBtn" Content="Регистрация" Style="{StaticResource CustomFont}" Width="200" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,160,0,0" Click="regBtn_Click"/>

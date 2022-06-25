@@ -96,6 +96,16 @@ namespace ReadBook
 
                 if(access)
                 {
+                    if (autologinCheckBox.IsChecked == true)
+                    {
+                        App.Current.Properties[0] = loginTextBox.Text.Trim();
+                        App.Current.Properties[1] = passwordTextBox.Password.Trim();
+                    }
+                    if (autologinCheckBox.IsChecked == false)
+                    {
+                        App.Current.Properties[0] = null;
+                        App.Current.Properties[1] = null;
+                    }
                     MainWindow window = new MainWindow();
                     window.Show();
                     this.Close();
@@ -120,26 +130,6 @@ namespace ReadBook
             Reg window = new Reg();
             window.Show();
             this.Close();
-        }
-
-        private void autologinCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            if (autologinCheckBox.IsChecked == true)
-            {
-                App.Current.Properties[0] = loginTextBox.Text.Trim();
-                App.Current.Properties[1] = passwordTextBox.Password.Trim();
-                App.Current.Properties[2] = autologinCheckBox.IsChecked;
-            }
-        }
-
-        private void autologinCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (autologinCheckBox.IsChecked == false)
-            {
-                App.Current.Properties[0] = null;
-                App.Current.Properties[1] = null;
-                App.Current.Properties[2] = null;
-            }
         }
     }
 }

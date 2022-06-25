@@ -21,17 +21,15 @@ namespace ReadBook
             {
                 IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
                 StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("storage", FileMode.Create, isolatedStorage));
-                if (App.Current.Properties[0] != null || App.Current.Properties[1] != null || App.Current.Properties[2] != null)
+                if (App.Current.Properties[0] != null || App.Current.Properties[1] != null)
                 {
                     srWriter.WriteLine(App.Current.Properties[0].ToString());
                     srWriter.WriteLine(App.Current.Properties[1].ToString());
-                    srWriter.WriteLine(App.Current.Properties[2].ToString());
                 }
                 else
                 {
                     srWriter.WriteLine(App.Current.Properties[0].ToString());
                     srWriter.WriteLine(App.Current.Properties[1].ToString());
-                    srWriter.WriteLine(App.Current.Properties[2].ToString());
                 }
 
                 srWriter.Flush();

@@ -40,7 +40,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <Image Source="pack://application:,,,/Resources/Images/iconlogin.png" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,27,0,0"/>
+                <Image Source="pack://application:,,,/Resources/Images/iconlogin.png" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,26,0,0"/>
 
                 <PasswordBox x:Name="passwordTextBox" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="200" Height="35" Padding="28,0,0,2" Margin="0,0,0,40" PasswordChanged="passwordTextBox_PasswordChanged" Foreground="#FF5A5A5A"/>
                 <TextBlock x:Name="waterMarkPassword" FontSize="14" Text="Пароль" Style="{StaticResource CustomFont}" Foreground="LightGray" IsHitTestVisible="False" Width="200" Height="35" Padding="30,10,0,0" Margin="0,0,0,40"/>

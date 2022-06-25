@@ -130,14 +130,14 @@
     <Resource Include="Resources\icon1.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\iconpassword.png" />
+    <Resource Include="Resources\Images\notok.png" />
+    <Resource Include="Resources\Images\ok.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\iconlogin.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\notok.png" />
-    <Resource Include="Resources\Images\ok.png" />
+    <Resource Include="Resources\Images\iconpassword.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

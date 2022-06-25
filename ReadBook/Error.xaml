@@ -1,0 +1,39 @@
+﻿<Window x:Class="ReadBook.Error"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReadBook"
+        mc:Ignorable="d"
+        Title="Ошибка"
+        Height="350" Width="450"
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        AllowsTransparency="True" 
+        Background="{x:Null}">
+    <Border CornerRadius="10" Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="175"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="dragMoveZone" Grid.Row="0" Background="Transparent" MouseDown="dragMoveZone_MouseDown">
+                <Image Source="pack://application:,,,/Resources/Images/error.png" Height="120" Width="120" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                <Label Content="Ошибка!" Style="{StaticResource CustomFont}" FontSize="30" Foreground="#FF575757" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Margin="0,105,0,0"/>
+            </Grid>
+
+            <TextBlock x:Name="errorTextBlock" Style="{StaticResource CustomFont}" Foreground="#FF3E3E3E" FontSize="18"  Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <Button x:Name="okeyButton" Content="ОК" Grid.Row="2" Width="70" Height="40" BorderBrush="{x:Null}" Background="#FFFFD200" Click="okeyButton_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

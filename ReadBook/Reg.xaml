@@ -9,53 +9,56 @@
         Height="550" Width="500"
         WindowStyle="None" 
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="400"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="90"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <Grid.Background>
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="{x:Null}">
+    <Border CornerRadius="10">
+        <Border.Background>
             <ImageBrush ImageSource="pack://application:,,,/Resources/Images/BackgroundAuth.jpg"></ImageBrush>
-        </Grid.Background>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.ColumnSpan="3" x:Name="ToolBar" VerticalAlignment="Top" Background="Transparent" MouseDown="ToolBar_MouseDown" Height="25">
-            <Image x:Name="ExitImage" Source="pack://application:,,,/Resources/Images/Menu/close.png" Width="30" Height="20" Margin="470,0,0,0" MouseDown="ExitImage_MouseDown"/>
-            <Image x:Name="RollupImage" Source="pack://application:,,,/Resources/Images/Menu/rollup.png" Width="30" Height="20" Margin="408,0,0,0" MouseDown="RollupImage_MouseDown"/>
+            <Grid Grid.ColumnSpan="3" x:Name="ToolBar" VerticalAlignment="Top" Background="Transparent" MouseDown="ToolBar_MouseDown" Height="25">
+                <Image x:Name="ExitImage" Source="pack://application:,,,/Resources/Images/Menu/close.png" Width="30" Height="20" Margin="470,0,0,0" MouseDown="ExitImage_MouseDown"/>
+                <Image x:Name="RollupImage" Source="pack://application:,,,/Resources/Images/Menu/rollup.png" Width="30" Height="20" Margin="408,0,0,0" MouseDown="RollupImage_MouseDown"/>
+            </Grid>
+
+            <Label Content="Создать учётную запись" Style="{StaticResource LabelBorder}" FontSize="27" Foreground="#FFFFB100" FontWeight="ExtraBold" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="350" Height="50" Margin="0,25,0,0"/>
+
+            <Label Content="Имя" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,0,165,363"/>
+            <TextBox x:Name="fnameTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,325"/>
+
+            <Label Content="Фамилия" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,0,165,263"/>
+            <TextBox x:Name="lnameTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,225"/>
+
+            <Label Content="Отчество" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,0,165,163"/>
+            <TextBox x:Name="mnameTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,125"/>
+
+            <Label Content="Дата рождения" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="120" Height="30" Margin="0,0,135,63"/>
+            <TextBox x:Name="datebirthTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+
+            <Label Content="Номер телефона" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="120" Height="30" Margin="0,40,135,0"/>
+            <TextBox x:Name="numberTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,75,0,0"/>
+
+            <Label Content="Логин" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,137,165,0"/>
+            <TextBox x:Name="loginTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,175,0,0" TextChanged="loginTextBox_TextChanged"/>
+            <Image x:Name="okImg" Source="pack://application:,,,/Resources/Images/ok.png" Grid.Row="1" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Этот логин подходит" Margin="0,0,41,134" Visibility="Hidden"/>
+            <Image x:Name="nonokImg" Source="pack://application:,,,/Resources/Images/notok.png" Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Этот логин уже занят! Попробуйте другой" Margin="0,0,41,129" Visibility="Hidden"/>
+
+            <Label Content="Пароль" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,237,165,0"/>
+            <PasswordBox x:Name="passwordTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,275,0,0"/>
+
+            <Button x:Name="btnBack" Grid.Column="1" Grid.Row="1" Content="Назад" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,375,200,0" Click="btnBack_Click"/>
+            <Button x:Name="btnReg" Grid.Column="1" Grid.Row="1" Content="Регистрация" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="200,375,0,0" Click="btnReg_Click"/>
         </Grid>
-
-        <Label Content="Создать учётную запись" Style="{StaticResource LabelBorder}" FontSize="27" Foreground="#FFFFB100" FontWeight="ExtraBold" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="350" Height="50" Margin="0,25,0,0"/>
-
-        <Label Content="Имя" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,0,165,363"/>
-        <TextBox x:Name="fnameTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,325"/>
-
-        <Label Content="Фамилия" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,0,165,263"/>
-        <TextBox x:Name="lnameTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,225"/>
-
-        <Label Content="Отчество" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,0,165,163"/>
-        <TextBox x:Name="mnameTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,125"/>
-
-        <Label Content="Дата рождения" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="120" Height="30" Margin="0,0,135,63"/>
-        <TextBox x:Name="datebirthTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,25"/>
-
-        <Label Content="Номер телефона" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="120" Height="30" Margin="0,40,135,0"/>
-        <TextBox x:Name="numberTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,75,0,0"/>
-
-        <Label Content="Логин" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,137,165,0"/>
-        <TextBox x:Name="loginTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,175,0,0" TextChanged="loginTextBox_TextChanged"/>
-        <Image x:Name="okImg" Source="pack://application:,,,/Resources/Images/ok.png" Grid.Row="1" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Этот логин подходит" Margin="0,0,41,134" Visibility="Hidden"/>
-        <Image x:Name="nonokImg" Source="pack://application:,,,/Resources/Images/notok.png" Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Этот логин уже занят! Попробуйте другой" Margin="0,0,41,129" Visibility="Hidden"/>
-
-        <Label Content="Пароль" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,237,165,0"/>
-        <PasswordBox x:Name="passwordTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,275,0,0"/>
-
-        <Button x:Name="btnBack" Grid.Column="1" Grid.Row="1" Content="Назад" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,375,200,0" Click="btnBack_Click"/>
-        <Button x:Name="btnReg" Grid.Column="1" Grid.Row="1" Content="Регистрация" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="200,375,0,0" Click="btnReg_Click"/>
-    </Grid>
+    </Border>
 </Window>

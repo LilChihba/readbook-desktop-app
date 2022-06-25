@@ -112,7 +112,9 @@ namespace ReadBook
                 }
                 else
                 {
-                    MessageBox.Show("Вы ввели неверный логин или пароль! Повторите попытку", "Ошибка");
+                    var text = "Введен неверный логин или пароль!";
+                    Error window = new Error(text);
+                    window.Show();
                 }
             }
             catch(Exception ex)

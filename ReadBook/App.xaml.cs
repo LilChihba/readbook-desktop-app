@@ -26,11 +26,6 @@ namespace ReadBook
                     srWriter.WriteLine(App.Current.Properties[0].ToString());
                     srWriter.WriteLine(App.Current.Properties[1].ToString());
                 }
-                else
-                {
-                    srWriter.WriteLine(App.Current.Properties[0].ToString());
-                    srWriter.WriteLine(App.Current.Properties[1].ToString());
-                }
 
                 srWriter.Flush();
                 srWriter.Close();

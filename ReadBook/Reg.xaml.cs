@@ -13,6 +13,8 @@ namespace ReadBook
     {
         SqlConnection connection;
         List<string> logins = new List<string>();
+        bool backspace = false;
+
 
         public Reg()
         {
@@ -65,7 +67,9 @@ namespace ReadBook
             {
                 if (fnameTextBox.Text == "" || lnameTextBox.Text == "" || mnameTextBox.Text == "" || datebirthTextBox.Text == "" || numberTextBox.Text == "" || loginTextBox.Text == "" || passwordTextBox.Password == "")
                 {
-                    MessageBox.Show("Вы не заполнили поля с данными!", "Ошибка");
+                    var text = "Вы не заполнили поля с данными!";
+                    Error window = new Error(text);
+                    window.Show();
                 }
                 else
                 {
@@ -86,7 +90,9 @@ namespace ReadBook
 
                     if(loginTextBox.Text == login.Trim())
                     {
-                        MessageBox.Show("Такой логин уже занят", "Ошибка");
+                        var text = "Такой логин уже существует, попробуйте другой!";
+                        Error window = new Error(text);
+                        window.Show();
                     }
                     else
                     {
@@ -113,7 +119,9 @@ namespace ReadBook
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Ошибка");
+                var text = ex.ToString();
+                Error window = new Error(text);
+                window.Show();
             }
             finally
             {
@@ -145,11 +153,156 @@ namespace ReadBook
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Ошибка");
+                var text = ex.ToString();
+                Error window = new Error(text);
+                window.Show();
             }
             finally
             {
                 connection.Close();
+            }
+        }
+
+        private void numberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (char.IsDigit(e.Text, 0) || e.Text[0] == '-' || e.Text[0] == '(' || e.Text[0] == ')' || e.Text[0] == '+')
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void datebirthTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (char.IsDigit(e.Text, 0) || e.Text[0] == '.' || e.Text[0] == '-')
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void loginTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key.ToString() == "Space")
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void passwordTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "Space")
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void passwordTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if ((e.Text[0] >= 'А' && e.Text[0] <= 'Я') || (e.Text[0] >= 'а' && e.Text[0] <= 'я'))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void loginTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if ((e.Text[0] >= 'А' && e.Text[0] <= 'Я') || (e.Text[0] >= 'а' && e.Text[0] <= 'я'))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void datebirthTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (backspace)
+            {
+                backspace = false;
+                return;
+            }
+            if (datebirthTextBox.Text.Length == 2 || datebirthTextBox.Text.Length == 5)
+            {
+                datebirthTextBox.Text += '.';
+                datebirthTextBox.Select(datebirthTextBox.Text.Length, 0);
+            }
+        }
+
+        private void datebirthTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "Back")
+            {
+                if (datebirthTextBox.Text != "")
+                {
+                    if (datebirthTextBox.Text.Substring(datebirthTextBox.Text.Length - 1) == ".")
+                    {
+                        datebirthTextBox.Text = datebirthTextBox.Text.Remove(datebirthTextBox.Text.Length - 1);
+                        datebirthTextBox.Select(datebirthTextBox.Text.Length, 0);
+                        backspace = true;
+                    }
+                    else
+                    {
+                        e.Handled = false;
+                    }
+                }
+            }
+        }
+
+        private void PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Paste)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void numberTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                long text = 0;
+                if (numberTextBox.Text[0] == '+')
+                {
+                    text = Convert.ToInt64(numberTextBox.Text.Remove(0, 1));
+                }
+                else
+                {
+                    text = Convert.ToInt64(numberTextBox.Text);
+                }
+                numberTextBox.Text = text.ToString("+#(###)###-##-##");
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void numberTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                if (numberTextBox.Text[0] == '8')
+                {
+                    numberTextBox.Text = "+7";
+                    numberTextBox.Select(numberTextBox.Text.Length, 0);
+                }
+            }
+            catch
+            {
+                return;
             }
         }
     }

@@ -119,7 +119,9 @@ namespace ReadBook
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Ошибка подключения");
+                var text = ex.ToString();
+                Error window = new Error(text);
+                window.Show();
             }
             finally
             {

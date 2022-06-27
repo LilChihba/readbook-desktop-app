@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReadBook"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ReadBook"
+        Height="450" Width="800"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="{x:Null}">
     <Grid>
-        
+        <Border CornerRadius="10" Background="White">
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" Content="Выход" Click="Button_Click"/>
+        </Border>
     </Grid>
 </Window>

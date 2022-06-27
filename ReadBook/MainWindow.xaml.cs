@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using System.IO.IsolatedStorage;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace ReadBook
 {
@@ -23,6 +13,25 @@ namespace ReadBook
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
+            StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("storage", FileMode.Create, isolatedStorage));
+            App.Current.Properties[0] = null;
+            App.Current.Properties[1] = null;
+            App.Current.Properties[2] = null;
+            srWriter.WriteLine(App.Current.Properties[0]);
+            srWriter.WriteLine(App.Current.Properties[1]);
+            srWriter.WriteLine(App.Current.Properties[2]);
+
+            srWriter.Flush();
+            srWriter.Close();
+
+            Auth window = new Auth();
+            window.Show();
+            this.Close();
         }
     }
 }

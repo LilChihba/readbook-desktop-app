@@ -11,15 +11,15 @@ namespace ReadBook
         public Error(string text)
         {
             InitializeComponent();
-            errorTextBlock.Text = text;
+            ErrorTextBlock.Text = text;
         }
 
-        private void okeyButton_Click(object sender, RoutedEventArgs e)
+        private void OkeyButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void dragMoveZone_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DragMoveZone_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {

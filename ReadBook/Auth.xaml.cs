@@ -10,7 +10,7 @@ namespace ReadBook
     /// </summary>
     public partial class Auth : Window
     {
-        SqlConnection connection;
+        readonly SqlConnection connection;
 
         public Auth()
         {
@@ -63,19 +63,19 @@ namespace ReadBook
             this.WindowState = WindowState.Minimized;
         }
 
-        private void passwordTextBox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void PasswordTextBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (passwordTextBox.Password.Length > 0)
+            if (PasswordTextBox.Password.Length > 0)
             {
-                waterMarkPassword.Visibility = Visibility.Collapsed;
+                WaterMarkPassword.Visibility = Visibility.Collapsed;
             }
             else
             {
-                waterMarkPassword.Visibility = Visibility.Visible;
+                WaterMarkPassword.Visibility = Visibility.Visible;
             }
         }
 
-        private void authBtn_Click(object sender, RoutedEventArgs e)
+        private void AuthBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -84,8 +84,8 @@ namespace ReadBook
 
                 bool access = false;
 
-                query.Parameters.AddWithValue("@login", loginTextBox.Text);
-                query.Parameters.AddWithValue("@password", passwordTextBox.Password);
+                query.Parameters.AddWithValue("@login", LoginTextBox.Text);
+                query.Parameters.AddWithValue("@password", PasswordTextBox.Password);
 
                 SqlDataReader reader = query.ExecuteReader();
                 while(reader.Read())
@@ -96,12 +96,12 @@ namespace ReadBook
 
                 if(access)
                 {
-                    if (autologinCheckBox.IsChecked == true)
+                    if (AutologinCheckBox.IsChecked == true)
                     {
-                        App.Current.Properties[0] = loginTextBox.Text.Trim();
-                        App.Current.Properties[1] = passwordTextBox.Password.Trim();
+                        App.Current.Properties[0] = LoginTextBox.Text.Trim();
+                        App.Current.Properties[1] = PasswordTextBox.Password.Trim();
                     }
-                    if (autologinCheckBox.IsChecked == false)
+                    if (AutologinCheckBox.IsChecked == false)
                     {
                         App.Current.Properties[0] = null;
                         App.Current.Properties[1] = null;
@@ -129,7 +129,7 @@ namespace ReadBook
             }
         }
 
-        private void regBtn_Click(object sender, RoutedEventArgs e)
+        private void RegBtn_Click(object sender, RoutedEventArgs e)
         {
             Reg window = new Reg();
             window.Show();

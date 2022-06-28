@@ -28,14 +28,14 @@
             <Label Content="Авторизация" FontSize="20" Foreground="White" Style="{StaticResource CustomFont}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,195"/>
             <Border BorderBrush="Black" BorderThickness="0,0.5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,60,0,0">
                 <Grid>
-                    <TextBox x:Name="loginTextBox" FontSize="14" Style="{StaticResource CustomFont}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="200" Height="35" Padding="28,3,0,2" Margin="0,20,0,150" Foreground="#FF5A5A5A"/>
-                    <TextBlock x:Name="waterMarkLogin" Text="Логин" FontSize="14" Foreground="LightGray" IsHitTestVisible="False" Width="200" Height="35" Padding="30,10,0,0" Margin="0,20,0,150">
+                    <TextBox x:Name="LoginTextBox" FontSize="14" Style="{StaticResource CustomFont}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="200" Height="35" Padding="28,3,0,2" Margin="0,20,0,150" Foreground="#FF5A5A5A"/>
+                    <TextBlock x:Name="WaterMarkLogin" Text="Логин" FontSize="14" Foreground="LightGray" IsHitTestVisible="False" Width="200" Height="35" Padding="30,10,0,0" Margin="0,20,0,150">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                                 <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/Resources/Fonts/#Gotham Pro"/>
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName=loginTextBox}" Value="">
+                                    <DataTrigger Binding="{Binding Text, ElementName=LoginTextBox}" Value="">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -44,14 +44,14 @@
                     </TextBlock>
                     <Image Source="pack://application:,,,/Resources/Images/iconlogin.png" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,26,0,0"/>
 
-                    <PasswordBox x:Name="passwordTextBox" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="200" Height="35" Padding="28,0,0,2" Margin="0,0,0,40" PasswordChanged="passwordTextBox_PasswordChanged" Foreground="#FF5A5A5A"/>
-                    <TextBlock x:Name="waterMarkPassword" FontSize="14" Text="Пароль" Style="{StaticResource CustomFont}" Foreground="LightGray" IsHitTestVisible="False" Width="200" Height="35" Padding="30,10,0,0" Margin="0,0,0,40"/>
+                    <PasswordBox x:Name="PasswordTextBox" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="200" Height="35" Padding="28,0,0,2" Margin="0,0,0,40" PasswordChanged="PasswordTextBox_PasswordChanged" Foreground="#FF5A5A5A"/>
+                    <TextBlock x:Name="WaterMarkPassword" FontSize="14" Text="Пароль" Style="{StaticResource CustomFont}" Foreground="LightGray" IsHitTestVisible="False" Width="200" Height="35" Padding="30,10,0,0" Margin="0,0,0,40"/>
                     <Image Source="pack://application:,,,/Resources/Images/iconpassword.png" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8,0,0,39"/>
 
-                    <CheckBox x:Name="autologinCheckBox" Content="Автоматический вход" Style="{StaticResource CustomFont}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="3,1,0,0" Margin="0,20,0,0"/>
+                    <CheckBox x:Name="AutologinCheckBox" Content="Автоматический вход" Style="{StaticResource CustomFont}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="3,1,0,0" Margin="0,20,0,0"/>
 
-                    <Button x:Name="authBtn" Content="Авторизация" Style="{StaticResource CustomFont}" Width="200" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,80,0,0" Click="authBtn_Click"/>
-                    <Button x:Name="regBtn" Content="Регистрация" Style="{StaticResource CustomFont}" Width="200" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,160,0,0" Click="regBtn_Click"/>
+                    <Button x:Name="AuthBtn" Content="Авторизация" Style="{StaticResource CustomFont}" Width="200" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,80,0,0" Click="AuthBtn_Click"/>
+                    <Button x:Name="RegBtn" Content="Регистрация" Style="{StaticResource CustomFont}" Width="200" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,160,0,0" Click="RegBtn_Click"/>
                 </Grid>
             </Border>
         </Grid>

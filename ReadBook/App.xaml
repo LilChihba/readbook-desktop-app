@@ -15,7 +15,8 @@
                         <Border BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             Background="{TemplateBinding Background}" 
-                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True">
                             <Grid>
                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" 
                                 Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" 
@@ -25,7 +26,7 @@
                                 Opacity="0.5">
 
                                     <ContentPresenter.Effect>
-                                        <BlurEffect Radius="5"  />
+                                        <BlurEffect Radius="5"/>
                                     </ContentPresenter.Effect>
                                 </ContentPresenter>
                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" 

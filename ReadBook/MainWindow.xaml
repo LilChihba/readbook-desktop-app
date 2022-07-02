@@ -34,7 +34,7 @@
             
             <Border Grid.Row="1" Grid.Column="0" CornerRadius="0,0,0,10" Margin="10,0,0,10">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                    <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+                    <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
                 </ScrollViewer>
             </Border>
 

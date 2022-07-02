@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ReadBook
@@ -15,7 +17,7 @@ namespace ReadBook
         public MainWindow()
         {
             InitializeComponent();
-            frame.Navigate(new ReadBook.Pages.Recommended());
+            ContentFrame.Navigate(new ReadBook.Pages.Recommended());
         }
 
         private void ToolBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -42,10 +44,8 @@ namespace ReadBook
             StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("storage", FileMode.Create, isolatedStorage));
             App.Current.Properties[0] = null;
             App.Current.Properties[1] = null;
-            App.Current.Properties[2] = null;
             srWriter.WriteLine(App.Current.Properties[0]);
             srWriter.WriteLine(App.Current.Properties[1]);
-            srWriter.WriteLine(App.Current.Properties[2]);
 
             srWriter.Flush();
             srWriter.Close();
@@ -57,22 +57,22 @@ namespace ReadBook
 
         private void ImageProfile_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            return;
         }
 
         private void MyLibraryImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            return;
         }
 
         private void RecomImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            frame.Navigate(new ReadBook.Pages.Recommended());
+            ContentFrame.Navigate(new ReadBook.Pages.Recommended());
         }
 
         private void SearshImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            return;
         }
 
         private void PolygonMenu_MouseDown(object sender, MouseButtonEventArgs e)
@@ -81,6 +81,7 @@ namespace ReadBook
             {
                 HideMenu.Width = new GridLength(1000);
                 hide = true;
+                
             }
             else
             {

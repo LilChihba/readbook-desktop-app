@@ -288,7 +288,7 @@ namespace ReadBook
 
         private void DatebirthTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (char.IsDigit(e.Text, 0) || e.Text[0] == '.' || e.Text[0] == '-')
+            if (char.IsDigit(e.Text, 0))
             {
                 e.Handled = false;
             }

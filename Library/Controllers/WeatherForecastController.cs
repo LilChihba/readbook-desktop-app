@@ -1,6 +1,7 @@
 ﻿using Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,13 @@ namespace Library.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private ILoggerManager _logger;
-        //private readonly IRepositoryManager _repository;
-        public WeatherForecastController(ILoggerManager logger) //, IRepositoryManager repository)
+        private readonly IRepositoryManager _repository;
+        public WeatherForecastController(ILoggerManager logger, IRepositoryManager repository)
         {
             _logger = logger;
-            //_repository = repository;
+            _repository = repository;
         }
+
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {

@@ -6,15 +6,72 @@
         xmlns:local="clr-namespace:ReadBook"
         mc:Ignorable="d"
         Title="ReadBook"
-        Height="450" Width="800"
+        Height="720" Width="1000"
         ResizeMode="NoResize"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="{x:Null}">
-    <Grid>
-        <Border CornerRadius="10" Background="White">
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" Content="Выход" Click="Button_Click"/>
-        </Border>
-    </Grid>
+    <Border CornerRadius="10">
+        <Border.Background>
+            <ImageBrush ImageSource="pack://application:,,,/Resources/Images/BackgroundAuth.jpg"></ImageBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="HideMenu" Width="800"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.ColumnSpan="3" Grid.Row="0" CornerRadius="10,10,0,0" Background="Transparent" MouseDown="ToolBar_MouseDown">
+                <Grid x:Name="ToolBar" VerticalAlignment="Top" Height="25">
+                    <Image x:Name="ExitImage" Source="pack://application:,,,/Resources/Images/Menu/close.png" Width="30" Height="20" Margin="965,0,0,0" MouseDown="ExitImage_MouseDown"/>
+                    <Image x:Name="RollupImage" Source="pack://application:,,,/Resources/Images/Menu/rollup.png" Width="30" Height="20" Margin="903,0,0,0" MouseDown="RollupImage_MouseDown"/>
+                </Grid>
+            </Border>
+            
+            <Border Grid.Row="1" Grid.Column="0" CornerRadius="0,0,0,10" Margin="10,0,0,10">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
+                </ScrollViewer>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="1" CornerRadius="0,0,10,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#FF365676"/>
+                        <GradientStop Color="#FF25405F" Offset="1"/>
+                        <GradientStop Color="#FF2A4766" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Polygon x:Name="PolygonMenu" Points="0, 0, -30, 30, -30, 150, 0, 180" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" MouseDown="PolygonMenu_MouseDown">
+                        <Polygon.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/Resources/Images/polygonmenu.png"/>
+                        </Polygon.Fill>
+                    </Polygon>
+
+                    <Ellipse x:Name="ImageProfile" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="2" MouseDown="ImageProfile_MouseDown">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="pack://application:,,,/Resources/Images/userimage.png" Stretch="Uniform"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <Image x:Name="MyLibraryImg" Source="pack://application:,,,/Resources/Images/mylibrary.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,130,0,0" MouseDown="MyLibraryImg_MouseDown"/>
+                    <Label Content="Моя библиотека" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,180,0,0"/>
+                    
+                    <Image x:Name="RecomImg" Source="pack://application:,,,/Resources/Images/recom.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,230,0,0" MouseDown="RecomImg_MouseDown"/>
+                    <Label Content="Рекомендуемые" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,280,0,0"/>
+                    
+                    <Image x:Name="SearshImg" Source="pack://application:,,,/Resources/Images/search.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,330,0,0" MouseDown="SearshImg_MouseDown"/>
+                    <Label Content="Поиск" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,380,0,0"/>
+                    
+                    <Image x:Name="ExitAccImg" Source="pack://application:,,,/Resources/Images/exit.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="40" Height="40" Margin="0,0,0,25" MouseDown="ExitAccImg_MouseDown"/>
+                    <Label Content="Выход" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5,0,0,0"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </Window>

@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Windows;
-
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ReadBook
 {
@@ -10,21 +12,40 @@ namespace ReadBook
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool hide = false;
+
         public MainWindow()
         {
             InitializeComponent();
+            ContentFrame.Navigate(new ReadBook.Pages.Recommended());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ToolBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void ExitImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void RollupImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void ExitAccImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
             IsolatedStorageFile isolatedStorage = IsolatedStorageFile.GetUserStoreForAssembly();
             StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("storage", FileMode.Create, isolatedStorage));
             App.Current.Properties[0] = null;
             App.Current.Properties[1] = null;
-            App.Current.Properties[2] = null;
             srWriter.WriteLine(App.Current.Properties[0]);
             srWriter.WriteLine(App.Current.Properties[1]);
-            srWriter.WriteLine(App.Current.Properties[2]);
 
             srWriter.Flush();
             srWriter.Close();
@@ -32,6 +53,41 @@ namespace ReadBook
             Auth window = new Auth();
             window.Show();
             this.Close();
+        }
+
+        private void ImageProfile_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            return;
+        }
+
+        private void MyLibraryImg_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            return;
+        }
+
+        private void RecomImg_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ContentFrame.Navigate(new ReadBook.Pages.Recommended());
+        }
+
+        private void SearshImg_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            return;
+        }
+
+        private void PolygonMenu_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!hide)
+            {
+                HideMenu.Width = new GridLength(1000);
+                hide = true;
+                
+            }
+            else
+            {
+                HideMenu.Width = new GridLength(800);
+                hide = false;
+            }
         }
     }
 }

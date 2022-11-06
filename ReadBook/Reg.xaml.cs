@@ -11,7 +11,7 @@ namespace ReadBook
     /// </summary>
     public partial class Reg : Window
     {
-        SqlConnection connection;
+        readonly SqlConnection connection;
         List<string> logins = new List<string>();
         bool backspace = false;
 
@@ -54,18 +54,18 @@ namespace ReadBook
             this.WindowState = WindowState.Minimized;
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             Auth window = new Auth();
             window.Show();
             this.Close();
         }
 
-        private void btnReg_Click(object sender, RoutedEventArgs e)
+        private void BtnReg_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (fnameTextBox.Text == "" || lnameTextBox.Text == "" || mnameTextBox.Text == "" || datebirthTextBox.Text == "" || numberTextBox.Text == "" || loginTextBox.Text == "" || passwordTextBox.Password == "")
+                if (FnameTextBox.Text == "" || LnameTextBox.Text == "" || MnameTextBox.Text == "" || DatebirthTextBox.Text == "" || NumberTextBox.Text == "" || LoginTextBox.Text == "" || PasswordTextBox.Password == "")
                 {
                     var text = "Вы не заполнили поля с данными!";
                     Error window = new Error(text);
@@ -76,7 +76,7 @@ namespace ReadBook
                     connection.Open();
 
                     SqlCommand query = new SqlCommand("SELECT * FROM Читатели WHERE Логин=@login", connection);
-                    query.Parameters.AddWithValue("@login", loginTextBox.Text);
+                    query.Parameters.AddWithValue("@login", LoginTextBox.Text);
 
                     string login = "";
 
@@ -88,7 +88,7 @@ namespace ReadBook
                     }
                     reader.Close();
 
-                    if(loginTextBox.Text == login.Trim())
+                    if(LoginTextBox.Text == login.Trim())
                     {
                         var text = "Такой логин уже существует, попробуйте другой!";
                         Error window = new Error(text);
@@ -102,13 +102,13 @@ namespace ReadBook
                         SqlCommand query2 = new SqlCommand("INSERT INTO Читатели([Номер читательского билета], Имя, Фамилия, Отчество, [Дата рождения], [Номер телефона], Логин, Пароль) VALUES(@count, @fname, @lname, @mname, @dateb, @number, @login, @password)", connection);
 
                         query2.Parameters.AddWithValue("@count", count);
-                        query2.Parameters.AddWithValue("@fname", fnameTextBox.Text);
-                        query2.Parameters.AddWithValue("@lname", lnameTextBox.Text);
-                        query2.Parameters.AddWithValue("@mname", mnameTextBox.Text);
-                        query2.Parameters.AddWithValue("@dateb", DateTime.Parse(datebirthTextBox.Text));
-                        query2.Parameters.AddWithValue("@number", numberTextBox.Text);
-                        query2.Parameters.AddWithValue("@login", loginTextBox.Text);
-                        query2.Parameters.AddWithValue("@password", passwordTextBox.Password);
+                        query2.Parameters.AddWithValue("@fname", FnameTextBox.Text);
+                        query2.Parameters.AddWithValue("@lname", LnameTextBox.Text);
+                        query2.Parameters.AddWithValue("@mname", MnameTextBox.Text);
+                        query2.Parameters.AddWithValue("@dateb", DateTime.Parse(DatebirthTextBox.Text));
+                        query2.Parameters.AddWithValue("@number", NumberTextBox.Text);
+                        query2.Parameters.AddWithValue("@login", LoginTextBox.Text);
+                        query2.Parameters.AddWithValue("@password", PasswordTextBox.Password);
 
                         query2.ExecuteNonQuery();
                         MainWindow window = new MainWindow();
@@ -129,7 +129,7 @@ namespace ReadBook
             }
         }
 
-        private void loginTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void LoginTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             try
             {
@@ -137,16 +137,16 @@ namespace ReadBook
 
                 foreach (string login in logins)
                 {
-                    if (login == loginTextBox.Text)
+                    if (login == LoginTextBox.Text)
                     {
-                        okImg.Visibility = Visibility.Hidden;
-                        nonokImg.Visibility = Visibility.Visible;
+                        OkImg.Visibility = Visibility.Hidden;
+                        NonokImg.Visibility = Visibility.Visible;
                         break;
                     }
                     else
                     {
-                        nonokImg.Visibility = Visibility.Hidden;
-                        okImg.Visibility = Visibility.Visible;
+                        NonokImg.Visibility = Visibility.Hidden;
+                        OkImg.Visibility = Visibility.Visible;
                     }
                 }
 
@@ -163,7 +163,7 @@ namespace ReadBook
             }
         }
 
-        private void numberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (char.IsDigit(e.Text, 0) || e.Text[0] == '-' || e.Text[0] == '(' || e.Text[0] == ')' || e.Text[0] == '+')
             {
@@ -175,19 +175,44 @@ namespace ReadBook
             }
         }
 
-        private void datebirthTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void NumberTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (char.IsDigit(e.Text, 0) || e.Text[0] == '.' || e.Text[0] == '-')
+            try
             {
-                e.Handled = false;
+                long text = 0;
+                if (NumberTextBox.Text[0] == '+')
+                {
+                    text = Convert.ToInt64(NumberTextBox.Text.Remove(0, 1));
+                }
+                else
+                {
+                    text = Convert.ToInt64(NumberTextBox.Text);
+                }
+                NumberTextBox.Text = text.ToString("+#(###)###-##-##");
             }
-            else
+            catch
             {
-                e.Handled = true;
+                return;
             }
         }
 
-        private void loginTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void NumberTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                if (NumberTextBox.Text[0] == '8')
+                {
+                    NumberTextBox.Text = "+7";
+                    NumberTextBox.Select(NumberTextBox.Text.Length, 0);
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void LoginTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key.ToString() == "Space")
             {
@@ -195,7 +220,19 @@ namespace ReadBook
             }
         }
 
-        private void passwordTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void LoginTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if ((e.Text[0] >= 'А' && e.Text[0] <= 'Я') || (e.Text[0] >= 'а' && e.Text[0] <= 'я'))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+
+        private void PasswordTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.ToString() == "Space")
             {
@@ -203,7 +240,7 @@ namespace ReadBook
             }
         }
 
-        private void passwordTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void PasswordTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if ((e.Text[0] >= 'А' && e.Text[0] <= 'Я') || (e.Text[0] >= 'а' && e.Text[0] <= 'я'))
             {
@@ -215,42 +252,30 @@ namespace ReadBook
             }
         }
 
-        private void loginTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if ((e.Text[0] >= 'А' && e.Text[0] <= 'Я') || (e.Text[0] >= 'а' && e.Text[0] <= 'я'))
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                e.Handled = false;
-            }
-        }
-
-        private void datebirthTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void DatebirthTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             if (backspace)
             {
                 backspace = false;
                 return;
             }
-            if (datebirthTextBox.Text.Length == 2 || datebirthTextBox.Text.Length == 5)
+            if (DatebirthTextBox.Text.Length == 2 || DatebirthTextBox.Text.Length == 5)
             {
-                datebirthTextBox.Text += '.';
-                datebirthTextBox.Select(datebirthTextBox.Text.Length, 0);
+                DatebirthTextBox.Text += '.';
+                DatebirthTextBox.Select(DatebirthTextBox.Text.Length, 0);
             }
         }
 
-        private void datebirthTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void DatebirthTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.ToString() == "Back")
             {
-                if (datebirthTextBox.Text != "")
+                if (DatebirthTextBox.Text != "")
                 {
-                    if (datebirthTextBox.Text.Substring(datebirthTextBox.Text.Length - 1) == ".")
+                    if (DatebirthTextBox.Text.Substring(DatebirthTextBox.Text.Length - 1) == ".")
                     {
-                        datebirthTextBox.Text = datebirthTextBox.Text.Remove(datebirthTextBox.Text.Length - 1);
-                        datebirthTextBox.Select(datebirthTextBox.Text.Length, 0);
+                        DatebirthTextBox.Text = DatebirthTextBox.Text.Remove(DatebirthTextBox.Text.Length - 1);
+                        DatebirthTextBox.Select(DatebirthTextBox.Text.Length, 0);
                         backspace = true;
                     }
                     else
@@ -261,48 +286,23 @@ namespace ReadBook
             }
         }
 
-        private void PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        private void DatebirthTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (e.Command == ApplicationCommands.Paste)
+            if (char.IsDigit(e.Text, 0))
+            {
+                e.Handled = false;
+            }
+            else
             {
                 e.Handled = true;
             }
         }
 
-        private void numberTextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            try
+            if (e.Command == ApplicationCommands.Paste)
             {
-                long text = 0;
-                if (numberTextBox.Text[0] == '+')
-                {
-                    text = Convert.ToInt64(numberTextBox.Text.Remove(0, 1));
-                }
-                else
-                {
-                    text = Convert.ToInt64(numberTextBox.Text);
-                }
-                numberTextBox.Text = text.ToString("+#(###)###-##-##");
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void numberTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            try
-            {
-                if (numberTextBox.Text[0] == '8')
-                {
-                    numberTextBox.Text = "+7";
-                    numberTextBox.Select(numberTextBox.Text.Length, 0);
-                }
-            }
-            catch
-            {
-                return;
+                e.Handled = true;
             }
         }
     }

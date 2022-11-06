@@ -57,8 +57,8 @@
             <Label Content="Пароль" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,237,165,0"/>
             <PasswordBox x:Name="PasswordTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MaxLength="50" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,275,0,0" PreviewKeyDown="PasswordTextBox_PreviewKeyDown" PreviewTextInput="PasswordTextBox_PreviewTextInput"/>
 
-            <Button x:Name="BtnBack" Grid.Column="1" Grid.Row="1" Content="Назад" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="0,375,200,0" Click="BtnBack_Click"/>
-            <Button x:Name="BtnReg" Grid.Column="1" Grid.Row="1" Content="Регистрация" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFD200" BorderBrush="{x:Null}" Margin="200,375,0,0" Click="BtnReg_Click"/>
+            <Button x:Name="BtnBack" Grid.Column="1" Grid.Row="1" Content="Назад" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFB100" BorderBrush="{x:Null}" Margin="0,375,200,0" Click="BtnBack_Click"/>
+            <Button x:Name="BtnReg" Grid.Column="1" Grid.Row="1" Content="Регистрация" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFB100" BorderBrush="{x:Null}" Margin="200,375,0,0" Click="BtnReg_Click"/>
         </Grid>
     </Border>
 </Window>

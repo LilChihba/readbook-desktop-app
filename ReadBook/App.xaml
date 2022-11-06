@@ -24,7 +24,6 @@
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Opacity="0.5">
-
                                     <ContentPresenter.Effect>
                                         <BlurEffect Radius="5"/>
                                     </ContentPresenter.Effect>
@@ -34,7 +33,6 @@
                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" 
                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>

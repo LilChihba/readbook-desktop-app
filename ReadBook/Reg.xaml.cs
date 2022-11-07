@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Input;
@@ -18,7 +19,7 @@ namespace ReadBook
 
         public Reg()
         {
-            string conStr = @"workstation id=mydbreadbook.mssql.somee.com;packet size=4096;user id=danila-yurov_SQLLogin_1;pwd=788domkbj4;data source=mydbreadbook.mssql.somee.com;persist security info=False;initial catalog=mydbreadbook";
+            string conStr = ConfigurationManager.ConnectionStrings["ReadBookEntities"].ConnectionString;
             connection = new SqlConnection(conStr);
             InitializeComponent();
 

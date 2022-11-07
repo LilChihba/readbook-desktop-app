@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.Configuration;
 
 namespace ReadBook.Pages
 {
@@ -16,7 +17,7 @@ namespace ReadBook.Pages
         public Recommended()
         {
             InitializeComponent();
-            string conStr = @"workstation id=mydbreadbook.mssql.somee.com;packet size=4096;user id=danila-yurov_SQLLogin_1;pwd=788domkbj4;data source=mydbreadbook.mssql.somee.com;persist security info=False;initial catalog=mydbreadbook";
+            string conStr = ConfigurationManager.ConnectionStrings["ReadBookEntities"].ConnectionString;
             connection = new SqlConnection(conStr);
 
             List<Book> books = new List<Book>();
@@ -60,9 +61,6 @@ namespace ReadBook.Pages
                 int descriptionIndex = reader.GetOrdinal("Описание");
                 description = reader.GetString(descriptionIndex).Trim();
 
-                int urlIndex = reader.GetOrdinal("Ссылка");
-                url = reader.GetString(urlIndex).Trim();
-
                 int imgIndex = reader.GetOrdinal("Картинка");
                 imgData = (byte[])reader[imgIndex];
 
@@ -81,7 +79,6 @@ namespace ReadBook.Pages
                     Pages = pages,
                     Genre = genre,
                     Description = description,
-                    Url = url,
                     Img = convertByteToBitmapImage(imgData)
                 });
             }

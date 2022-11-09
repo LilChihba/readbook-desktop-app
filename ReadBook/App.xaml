@@ -44,10 +44,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="ExitMouseOver" TargetType="{x:Type Image}">
+        <Style x:Key="CloseMouseOver" TargetType="{x:Type Image}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitImage}" Value="True">
                     <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Menu/close-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitImage}" Value="False">
                     <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Menu/close.png"/>
@@ -56,11 +61,94 @@
         </Style>
         <Style x:Key="RollupMouseOver" TargetType="{x:Type Image}">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitImage}" Value="True">
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=RollupImage}" Value="True">
                     <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Menu/rollup-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=RollupImage}" Value="False">
                     <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Menu/rollup.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MyLibraryImgMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MyLibraryImg}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/mylibrary-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MyLibraryImg}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/mylibrary.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ExitMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitAccImg}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/exit-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitAccImg}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/exit.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PolygonMenuMouseOver" TargetType="{x:Type Polygon}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=PolygonMenu}" Value="True">
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="pack://application:,,,/Resources/Images/VerticalMenu/polygonmenu-mouseover.png"></ImageBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=PolygonMenu}" Value="False">
+                    <Setter Property="Fill">
+                        <Setter.Value>
+                            <ImageBrush ImageSource="pack://application:,,,/Resources/Images/VerticalMenu/polygonmenu.png"></ImageBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="RecomMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=RecomImg}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/recom-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=RecomImg}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/recom.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SearchMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearshImg}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/search-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearshImg}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/search.png"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>

@@ -18,7 +18,7 @@
         </Border.Background>
         <Grid>
             <Grid x:Name="ToolBar" VerticalAlignment="Top" Background="Transparent" MouseDown="ToolBar_MouseDown" Height="25">
-                <Image x:Name="ExitImage" Style="{StaticResource ExitMouseOver}" Width="30" Height="20" Margin="320,0,0,0" MouseDown="ExitImage_MouseDown"/>
+                <Image x:Name="ExitImage" Style="{StaticResource CloseMouseOver}" Width="30" Height="20" Margin="320,0,0,0" MouseDown="ExitImage_MouseDown"/>
                 <Image x:Name="RollupImage" Style="{StaticResource RollupMouseOver}" Width="30" Height="20" Margin="260,0,0,0" MouseDown="RollupImage_MouseDown"/>
             </Grid>
 

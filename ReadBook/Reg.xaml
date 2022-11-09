@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.ColumnSpan="3" x:Name="ToolBar" VerticalAlignment="Top" Background="Transparent" MouseDown="ToolBar_MouseDown" Height="25">
-                <Image x:Name="ExitImage" Style="{StaticResource ExitMouseOver}" Width="30" Height="20" Margin="470,0,0,0" MouseDown="ExitImage_MouseDown"/>
+                <Image x:Name="ExitImage" Style="{StaticResource CloseMouseOver}" Width="30" Height="20" Margin="470,0,0,0" MouseDown="ExitImage_MouseDown"/>
                 <Image x:Name="RollupImage" Style="{StaticResource RollupMouseOver}" Width="30" Height="20" Margin="408,0,0,0" MouseDown="RollupImage_MouseDown"/>
             </Grid>
 
@@ -46,13 +46,15 @@
             <Label Content="Дата рождения" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="120" Height="30" Margin="0,0,135,63"/>
             <TextBox x:Name="DatebirthTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MaxLength="10" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,25" PreviewTextInput="DatebirthTextBox_PreviewTextInput" TextChanged="DatebirthTextBox_TextChanged" PreviewKeyDown="DatebirthTextBox_PreviewKeyDown" CommandManager.PreviewExecuted="PreviewExecuted"/>
 
-            <Label Content="Номер телефона" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="120" Height="30" Margin="0,40,135,0"/>
-            <TextBox x:Name="NumberTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MaxLength="18" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,75,0,0" PreviewTextInput="NumberTextBox_PreviewTextInput" CommandManager.PreviewExecuted="PreviewExecuted" LostFocus="NumberTextBox_LostFocus" TextChanged="NumberTextBox_TextChanged"/>
+            <Label Content="Почта" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="120" Height="30" Margin="0,40,135,0"/>
+            <TextBox x:Name="EmailTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,75,0,0" TextChanged="EmailTextBox_TextChanged"/>
+            <Image x:Name="OkImgEmail" Source="pack://application:,,,/Resources/Images/ok.png" Grid.Row="1" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Эта электронная почта подходит" Margin="0,0,41,183" Visibility="Hidden"/>
+            <Image x:Name="NonokImgEmail" Source="pack://application:,,,/Resources/Images/notok.png" Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Эта электронная почта занята! Попробуйте другую" Margin="0,0,41,180" Visibility="Hidden"/>
 
             <Label Content="Логин" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,137,165,0"/>
             <TextBox x:Name="LoginTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MaxLength="50" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,175,0,0" TextChanged="LoginTextBox_TextChanged" PreviewKeyDown="LoginTextBox_PreviewKeyDown" PreviewTextInput="LoginTextBox_PreviewTextInput"/>
-            <Image x:Name="OkImg" Source="pack://application:,,,/Resources/Images/ok.png" Grid.Row="1" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Этот логин подходит" Margin="0,0,41,134" Visibility="Hidden"/>
-            <Image x:Name="NonokImg" Source="pack://application:,,,/Resources/Images/notok.png" Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Этот логин уже занят! Попробуйте другой" Margin="0,0,41,129" Visibility="Hidden"/>
+            <Image x:Name="OkImgLogin" Source="pack://application:,,,/Resources/Images/ok.png" Grid.Row="1" Grid.Column="1" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Этот логин подходит" Margin="0,0,41,134" Visibility="Hidden"/>
+            <Image x:Name="NonokImgLogin" Source="pack://application:,,,/Resources/Images/notok.png" Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Этот логин уже занят! Попробуйте другой" Margin="0,0,41,129" Visibility="Hidden"/>
 
             <Label Content="Пароль" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,237,165,0"/>
             <PasswordBox x:Name="PasswordTextBox" Style="{StaticResource CustomFont}" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MaxLength="50" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,275,0,0" PreviewKeyDown="PasswordTextBox_PreviewKeyDown" PreviewTextInput="PasswordTextBox_PreviewTextInput"/>

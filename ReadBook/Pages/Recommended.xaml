@@ -16,7 +16,7 @@
                             <Image Source="{Binding Img}" Height="200" HorizontalAlignment="Left" Margin="15,0,0,0"/>
                             <Label Content="{Binding Name}" Style="{StaticResource CustomFont}" FontSize="35" Padding="170,3,0,0"/>
                             <Label Content="{Binding Author}" Style="{StaticResource CustomFont}" FontSize="20" Padding="170,50,0,0"/>
-                            <TextBlock x:Name="DescriptionTextBlock" Text="{Binding Description}" TextWrapping="Wrap" Style="{StaticResource CustomFont}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="130" Width="Auto" Margin="170,75,0,0" Padding="0,0,30,0"/>
+                            <TextBlock x:Name="DescriptionTextBlock" Text="{Binding Description}" TextWrapping="Wrap" Style="{StaticResource CustomFont}" VerticalAlignment="Center" Height="130" Width="Auto" Margin="170,75,0,0" Padding="0,0,30,0"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

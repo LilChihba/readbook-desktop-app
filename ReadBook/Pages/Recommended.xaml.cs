@@ -29,7 +29,6 @@ namespace ReadBook.Pages
             int pages;
             string genre;
             string description;
-            string url;
             byte[] imgData;
 
             SqlCommand query = new SqlCommand("SELECT * FROM [Каталог книг]", connection);

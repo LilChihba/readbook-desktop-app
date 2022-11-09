@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace ReadBook
 {
@@ -13,8 +14,11 @@ namespace ReadBook
     public partial class Reg : Window
     {
         readonly SqlConnection connection;
-        List<string> logins = new List<string>();
+        private List<string> logins = new List<string>();
+        private List<string> emails = new List<string>();
         bool backspace = false;
+
+        string complexEmailPattern = @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*" + "@" + @"((([\w]+([-\w]*[\w]+)*\.)+[a-zA-Z]+)|" + @"((([01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]).){3}[01]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]))\z";
 
 
         public Reg()
@@ -24,13 +28,15 @@ namespace ReadBook
             InitializeComponent();
 
             connection.Open();
-            SqlCommand query = new SqlCommand("SELECT Логин FROM Читатели", connection);
+            SqlCommand query = new SqlCommand("SELECT Логин, Почта FROM Читатели", connection);
 
             SqlDataReader reader = query.ExecuteReader();
             while (reader.Read())
             {
                 int loginIndex = reader.GetOrdinal("Логин");
+                int emailIndex = reader.GetOrdinal("Почта");
                 logins.Add(reader.GetString(loginIndex).Trim());
+                emails.Add(reader.GetString(emailIndex).Trim());
             }
 
             reader.Close();
@@ -66,7 +72,7 @@ namespace ReadBook
         {
             try
             {
-                if (FnameTextBox.Text == "" || LnameTextBox.Text == "" || MnameTextBox.Text == "" || DatebirthTextBox.Text == "" || NumberTextBox.Text == "" || LoginTextBox.Text == "" || PasswordTextBox.Password == "")
+                if(FnameTextBox.Text == "" || LnameTextBox.Text == "" || MnameTextBox.Text == "" || DatebirthTextBox.Text == "" || EmailTextBox.Text == "" || LoginTextBox.Text == "" || PasswordTextBox.Password == "")
                 {
                     var text = "Вы не заполнили поля с данными!";
                     Error window = new Error(text);
@@ -76,38 +82,56 @@ namespace ReadBook
                 {
                     connection.Open();
 
-                    SqlCommand query = new SqlCommand("SELECT * FROM Читатели WHERE Логин=@login", connection);
-                    query.Parameters.AddWithValue("@login", LoginTextBox.Text);
+                    bool access = false;
 
-                    string login = "";
-
-                    SqlDataReader reader = query.ExecuteReader();
-                    while(reader.Read())
+                    foreach(string login in logins)
                     {
-                        int loginIndex = reader.GetOrdinal("Логин");
-                        login = reader.GetString(loginIndex);
+                        if (login == LoginTextBox.Text)
+                        {
+                            var text = "Такой логин уже существует, попробуйте другой!";
+                            Error window = new Error(text);
+                            window.Show();
+                            access = false;
+                        }
+                        else
+                            access = true;
                     }
-                    reader.Close();
 
-                    if(LoginTextBox.Text == login.Trim())
+                    foreach(string email in emails)
                     {
-                        var text = "Такой логин уже существует, попробуйте другой!";
-                        Error window = new Error(text);
-                        window.Show();
+                        if (EmailTextBox.Text == email.Trim())
+                        {
+                            var text = "Такая электронная почта уже существует, попробуйте другую!";
+                            Error window = new Error(text);
+                            window.Show();
+                            access = false;
+                        }
+                        else
+                            access = true;
+
+                        if (!Regex.IsMatch(EmailTextBox.Text, complexEmailPattern))
+                        {
+                            var text = "Введена некорректная электронная почта, попробуйте другую!";
+                            Error window = new Error(text);
+                            window.Show();
+                            access = false;
+                        }
+                        else
+                            access = true;
                     }
-                    else
+                    if(access == true)
                     {
                         SqlCommand query1 = new SqlCommand("SELECT Count(*) FROM Читатели", connection);
                         Int32 count = Convert.ToInt32(query1.ExecuteScalar()) + 1;
 
-                        SqlCommand query2 = new SqlCommand("INSERT INTO Читатели([Номер читательского билета], Имя, Фамилия, Отчество, [Дата рождения], [Номер телефона], Логин, Пароль) VALUES(@count, @fname, @lname, @mname, @dateb, @number, @login, @password)", connection);
+                        SqlCommand query2 = new SqlCommand("INSERT INTO Читатели([Номер читательского билета], Имя, Фамилия, Отчество, [Дата рождения], [Почта], Логин, Пароль) VALUES(@count, @fname, @lname, @mname, @dateb, @email, @login, @password)", connection);
 
                         query2.Parameters.AddWithValue("@count", count);
                         query2.Parameters.AddWithValue("@fname", FnameTextBox.Text);
                         query2.Parameters.AddWithValue("@lname", LnameTextBox.Text);
                         query2.Parameters.AddWithValue("@mname", MnameTextBox.Text);
-                        query2.Parameters.AddWithValue("@dateb", DateTime.Parse(DatebirthTextBox.Text));
-                        query2.Parameters.AddWithValue("@number", NumberTextBox.Text);
+                        query2.Parameters.AddWithValue("@dateb", DatebirthTextBox.Text);
+                        query2.Parameters.AddWithValue("@email", EmailTextBox.Text);
                         query2.Parameters.AddWithValue("@login", LoginTextBox.Text);
                         query2.Parameters.AddWithValue("@password", PasswordTextBox.Password);
 
@@ -134,20 +158,18 @@ namespace ReadBook
         {
             try
             {
-                connection.Open();
-
                 foreach (string login in logins)
                 {
                     if (login == LoginTextBox.Text)
                     {
-                        OkImg.Visibility = Visibility.Hidden;
-                        NonokImg.Visibility = Visibility.Visible;
+                        OkImgLogin.Visibility = Visibility.Hidden;
+                        NonokImgLogin.Visibility = Visibility.Visible;
                         break;
                     }
                     else
                     {
-                        NonokImg.Visibility = Visibility.Hidden;
-                        OkImg.Visibility = Visibility.Visible;
+                        NonokImgLogin.Visibility = Visibility.Hidden;
+                        OkImgLogin.Visibility = Visibility.Visible;
                     }
                 }
 
@@ -157,59 +179,6 @@ namespace ReadBook
                 var text = ex.ToString();
                 Error window = new Error(text);
                 window.Show();
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-        private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (char.IsDigit(e.Text, 0) || e.Text[0] == '-' || e.Text[0] == '(' || e.Text[0] == ')' || e.Text[0] == '+')
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void NumberTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                long text = 0;
-                if (NumberTextBox.Text[0] == '+')
-                {
-                    text = Convert.ToInt64(NumberTextBox.Text.Remove(0, 1));
-                }
-                else
-                {
-                    text = Convert.ToInt64(NumberTextBox.Text);
-                }
-                NumberTextBox.Text = text.ToString("+#(###)###-##-##");
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void NumberTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            try
-            {
-                if (NumberTextBox.Text[0] == '8')
-                {
-                    NumberTextBox.Text = "+7";
-                    NumberTextBox.Select(NumberTextBox.Text.Length, 0);
-                }
-            }
-            catch
-            {
-                return;
             }
         }
 
@@ -304,6 +273,44 @@ namespace ReadBook
             if (e.Command == ApplicationCommands.Paste)
             {
                 e.Handled = true;
+            }
+        }
+
+        private void EmailTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                if (Regex.IsMatch(EmailTextBox.Text, complexEmailPattern))
+                {
+                    NonokImgEmail.Visibility = Visibility.Hidden;
+                    OkImgEmail.Visibility = Visibility.Visible;
+
+                    foreach (string email in emails)
+                    {
+                        if (email == EmailTextBox.Text)
+                        {
+                            OkImgEmail.Visibility = Visibility.Hidden;
+                            NonokImgEmail.Visibility = Visibility.Visible;
+                            break;
+                        }
+                        else
+                        {
+                            NonokImgEmail.Visibility = Visibility.Hidden;
+                            OkImgEmail.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
+                else
+                {
+                    OkImgEmail.Visibility = Visibility.Hidden;
+                    NonokImgEmail.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                var text = ex.ToString();
+                Error window = new Error(text);
+                window.Show();
             }
         }
     }

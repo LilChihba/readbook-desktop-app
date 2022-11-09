@@ -27,12 +27,12 @@
             </Grid.RowDefinitions>
             <Border Grid.ColumnSpan="3" Grid.Row="0" CornerRadius="10,10,0,0" Background="Transparent" MouseDown="ToolBar_MouseDown">
                 <Grid x:Name="ToolBar" VerticalAlignment="Top" Height="25">
-                    <Image x:Name="ExitImage" Source="pack://application:,,,/Resources/Images/Menu/close.png" Width="30" Height="20" Margin="965,0,0,0" MouseDown="ExitImage_MouseDown"/>
-                    <Image x:Name="RollupImage" Source="pack://application:,,,/Resources/Images/Menu/rollup.png" Width="30" Height="20" Margin="903,0,0,0" MouseDown="RollupImage_MouseDown"/>
+                    <Image x:Name="ExitImage" Style="{StaticResource ExitMouseOver}" Width="30" Height="20" Margin="965,0,0,0" MouseDown="ExitImage_MouseDown"/>
+                    <Image x:Name="RollupImage" Style="{StaticResource RollupMouseOver}" Width="30" Height="20" Margin="903,0,0,0" MouseDown="RollupImage_MouseDown"/>
                 </Grid>
             </Border>
             
-            <Border Grid.Row="1" Grid.Column="0" CornerRadius="0,0,0,10" Margin="10,0,0,10">
+            <Border Grid.Row="1" Grid.Column="0" CornerRadius="0,0,0,10" Margin="20,0,20,10">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden"/>
                 </ScrollViewer>

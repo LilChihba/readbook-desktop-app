@@ -44,5 +44,25 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ExitMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitImage}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Menu/close-mouseover.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitImage}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Menu/close.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="RollupMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitImage}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Menu/rollup-mouseover.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=RollupImage}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/Menu/rollup.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

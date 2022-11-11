@@ -3,9 +3,6 @@ using System.Windows.Input;
 
 namespace ReadBook
 {
-    /// <summary>
-    /// Логика взаимодействия для Error.xaml
-    /// </summary>
     public partial class Error : Window
     {
         public Error(string text)

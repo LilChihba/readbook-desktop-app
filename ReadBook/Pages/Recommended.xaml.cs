@@ -8,9 +8,6 @@ using System.Configuration;
 
 namespace ReadBook.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Recommended.xaml
-    /// </summary>
     public partial class Recommended : Page
     {
         SqlConnection connection;
@@ -98,6 +95,11 @@ namespace ReadBook.Pages
             image.StreamSource = mem;
             image.EndInit();
             return image;
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            string ISBN = ((Button)sender).Tag as string;
         }
     }
 }

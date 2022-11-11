@@ -17,6 +17,7 @@
                             <Label Content="{Binding Name}" Style="{StaticResource CustomFont}" FontSize="35" Padding="170,3,0,0" Foreground="White"/>
                             <Label Content="{Binding Author}" Style="{StaticResource CustomFont}" FontSize="20" Padding="170,50,0,0" Foreground="White"/>
                             <TextBlock x:Name="DescriptionTextBlock" Text="{Binding Description}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Foreground="White" Style="{StaticResource CustomFont}" VerticalAlignment="Center" Height="80" Width="Auto" Margin="170,50,0,0" Padding="0,0,30,0"/>
+                            <Button Tag="{Binding ISBN}" Click="Button_Click"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

@@ -6,9 +6,6 @@ using System.Windows.Input;
 
 namespace ReadBook
 {
-    /// <summary>
-    /// Логика взаимодействия для Auth.xaml
-    /// </summary>
     public partial class Auth : Window
     {
         readonly SqlConnection connection;
@@ -134,6 +131,13 @@ namespace ReadBook
         {
             Reg window = new Reg();
             window.Show();
+            this.Close();
+        }
+
+        private void ResetPassBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ResetPassword page = new ResetPassword();
+            page.Show();
             this.Close();
         }
     }

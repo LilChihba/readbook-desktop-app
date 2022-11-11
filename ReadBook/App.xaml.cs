@@ -5,9 +5,6 @@ using System.IO;
 
 namespace ReadBook
 {
-    /// <summary>
-    /// Логика взаимодействия для App.xaml
-    /// </summary>
     public partial class App : Application
     {
         protected override void OnExit(ExitEventArgs e)

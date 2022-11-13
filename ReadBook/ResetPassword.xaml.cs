@@ -77,9 +77,6 @@ namespace ReadBook
                     {
                         code = GenerateCode();
 
-                        //((InputCode)currentPage).code = code;
-                        //((ChangePassword)currentPage).Phone = ((InputPhone)currentPage).NumberTextBox.Text.Trim();
-
                         SmsRu.SmsRu sms = new SmsRu.SmsRu(ConfigurationManager.AppSettings["smsRuApi"]);
 
                         sms.Send(((InputPhone)currentPage).NumberTextBox.Text.Trim(), code);

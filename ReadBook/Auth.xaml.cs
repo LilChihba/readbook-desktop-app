@@ -81,6 +81,7 @@ namespace ReadBook
                 SqlCommand query = new SqlCommand("SELECT * FROM Читатели WHERE Логин=@login and Пароль=@password", connection);
 
                 bool access = false;
+                int id = 0;
 
                 query.Parameters.AddWithValue("@login", LoginTextBox.Text);
                 query.Parameters.AddWithValue("@password", PasswordTextBox.Password);
@@ -88,6 +89,8 @@ namespace ReadBook
                 SqlDataReader reader = query.ExecuteReader();
                 while(reader.Read())
                 {
+                    int idIndex = reader.GetOrdinal("Номер читательского билета");
+                    id = reader.GetInt32(idIndex);
                     access = true;
                 }
                 reader.Close();
@@ -98,11 +101,13 @@ namespace ReadBook
                     {
                         App.Current.Properties[0] = LoginTextBox.Text.Trim();
                         App.Current.Properties[1] = PasswordTextBox.Password.Trim();
+                        App.Current.Properties[2] = id;
                     }
                     if (AutologinCheckBox.IsChecked == false)
                     {
                         App.Current.Properties[0] = null;
                         App.Current.Properties[1] = null;
+                        App.Current.Properties[2] = null;
                     }
                     MainWindow window = new MainWindow();
                     window.Show();

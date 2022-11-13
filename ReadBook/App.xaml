@@ -152,5 +152,20 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="AddMyLibraryMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=AddImg}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/addimg-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=AddImg}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/addimg.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.IO.IsolatedStorage;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ReadBook
@@ -64,7 +62,7 @@ namespace ReadBook
 
         private void RecomImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ContentFrame.Navigate(new ReadBook.Pages.Recommended());
+            ContentFrame.Navigate(new Pages.Recommended());
         }
 
         private void SearshImg_MouseDown(object sender, MouseButtonEventArgs e)

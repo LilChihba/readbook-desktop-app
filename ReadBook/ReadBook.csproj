@@ -109,6 +109,7 @@
     <Compile Include="ResetPassword.xaml.cs">
       <DependentUpon>ResetPassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Page Include="Auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,13 +233,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ReadBook.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ReadBook.mdf" />
     <Content Include="ReadBook_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>ReadBook.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Images\addimg-mouseover.png" />
+    <Resource Include="Resources\Images\addimg.png" />
     <Content Include="SmsRu.dll" />
     <Resource Include="Resources\Images\VerticalMenu\exit-mouseover.png" />
     <Resource Include="Resources\Images\VerticalMenu\mylibrary-mouseover.png" />

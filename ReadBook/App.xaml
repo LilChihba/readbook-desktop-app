@@ -167,5 +167,20 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="TrashbinMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=TrashbinImg}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/trashbin-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=TrashbinImg}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/trashbin.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

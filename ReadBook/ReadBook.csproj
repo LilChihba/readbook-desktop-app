@@ -29,6 +29,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -82,9 +83,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Book.cs" />
+    <Compile Include="Models\BookModel.cs" />
+    <Compile Include="ByteConverter.cs" />
     <Compile Include="Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LibraryModel.cs" />
+    <Compile Include="Pages\MyLibrary.xaml.cs">
+      <DependentUpon>MyLibrary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Recommended.xaml.cs">
       <DependentUpon>Recommended.xaml</DependentUpon>
@@ -109,7 +115,6 @@
     <Compile Include="ResetPassword.xaml.cs">
       <DependentUpon>ResetPassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
     <Page Include="Auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +138,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\MyLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Recommended.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -239,6 +248,8 @@
     </Content>
     <Resource Include="Resources\Images\addimg-mouseover.png" />
     <Resource Include="Resources\Images\addimg.png" />
+    <Resource Include="Resources\Images\trashbin-mouseover.png" />
+    <Resource Include="Resources\Images\trashbin.png" />
     <Content Include="SmsRu.dll" />
     <Resource Include="Resources\Images\VerticalMenu\exit-mouseover.png" />
     <Resource Include="Resources\Images\VerticalMenu\mylibrary-mouseover.png" />

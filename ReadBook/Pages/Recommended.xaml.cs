@@ -19,7 +19,7 @@ namespace ReadBook.Pages
             string conStr = ConfigurationManager.ConnectionStrings["ReadBookEntities"].ConnectionString;
             connection = new SqlConnection(conStr);
 
-            List<Book> books = new List<Book>();
+            List<BookModel> books = new List<BookModel>();
             string isbn;
             string name;
             string author;
@@ -67,7 +67,7 @@ namespace ReadBook.Pages
                     return;
                 }
 
-                books.Add(new Book()
+                books.Add(new BookModel()
                 {
                     ISBN = isbn,
                     Name = name,
@@ -77,26 +77,12 @@ namespace ReadBook.Pages
                     Pages = pages,
                     Genre = genre,
                     Description = description,
-                    Img = convertByteToBitmapImage(imgData)
+                    Img = ByteConverter.convertByteToBitmapImage(imgData)
                 });
             }
             ListBooks.ItemsSource = books;
             reader.Close();
             connection.Close();
-        }
-
-        public BitmapImage convertByteToBitmapImage(Byte[] bytes)
-        {
-            BitmapImage image = new BitmapImage();
-            MemoryStream mem = new MemoryStream(bytes);
-            mem.Position = 0;
-            image.BeginInit();
-            image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-            image.CacheOption = BitmapCacheOption.OnLoad;
-            image.UriSource = null;
-            image.StreamSource = mem;
-            image.EndInit();
-            return image;
         }
 
         private void AddImg_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -108,7 +94,7 @@ namespace ReadBook.Pages
 
                 connection.Open();
 
-                SqlCommand query = new SqlCommand("SELECT Count(*) FROM [Библиотека книг]", connection);
+                SqlCommand query = new SqlCommand("SELECT MAX([Идентификационный номер книги]) FROM [Библиотека книг]", connection);
                 Int32 count = Convert.ToInt32(query.ExecuteScalar()) + 1;
 
                 SqlCommand query1 = new SqlCommand("SELECT * FROM [Каталог книг] WHERE [ISBN]=@isbnBook", connection);
@@ -123,7 +109,7 @@ namespace ReadBook.Pages
                 }
                 reader.Close();
 
-                SqlCommand query2 = new SqlCommand("INSERT INTO [Библиотека книг]([Идентификационный номер книги], [Номер читательского билета], [ISBN], [Название], [Дата добавления]) VALUES(@id, @userId, @isbn, @name, @dateTime)", connection);
+                SqlCommand query2 = new SqlCommand("IF NOT EXISTS (SELECT * FROM [Библиотека книг] WHERE [Идентификационный номер книги]=@id) INSERT INTO [Библиотека книг]([Идентификационный номер книги], [Номер читательского билета], [ISBN], [Название], [Дата добавления]) VALUES(@id, @userId, @isbn, @name, @dateTime)", connection);
 
                 query2.Parameters.AddWithValue("@id", count);
                 query2.Parameters.AddWithValue("@userId", App.Current.Properties[2]);

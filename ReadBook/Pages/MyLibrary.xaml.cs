@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.IO;
-using System.Configuration;
-using System.Data;
-
 
 namespace ReadBook.Pages
 {
-    public partial class Recommended : Page
+    /// <summary>
+    /// Логика взаимодействия для MyLibrary.xaml
+    /// </summary>
+    public partial class MyLibrary : Page
     {
         SqlConnection connection;
-        public Recommended()
+        public MyLibrary()
         {
             InitializeComponent();
             string conStr = ConfigurationManager.ConnectionStrings["ReadBookEntities"].ConnectionString;
             connection = new SqlConnection(conStr);
 
-            List<BookModel> books = new List<BookModel>();
-            string isbn;
+            List<MyLibrary> books = new List<MyLibrary>();
+            int id;
+            int userId;
             string name;
             string author;
-            string publisher;
-            int yearPublic;
-            int pages;
-            string genre;
-            string description;
             byte[] imgData;
 
             SqlCommand query = new SqlCommand("SELECT * FROM [Каталог книг]", connection);
@@ -83,52 +77,6 @@ namespace ReadBook.Pages
             ListBooks.ItemsSource = books;
             reader.Close();
             connection.Close();
-        }
-
-        private void AddImg_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            try
-            {
-                string ISBN = ((Image)sender).Tag as string;
-                string name = "";
-
-                connection.Open();
-
-                SqlCommand query = new SqlCommand("SELECT Count(*) FROM [Библиотека книг]", connection);
-                Int32 count = Convert.ToInt32(query.ExecuteScalar()) + 1;
-
-                SqlCommand query1 = new SqlCommand("SELECT * FROM [Каталог книг] WHERE [ISBN]=@isbnBook", connection);
-
-                query1.Parameters.AddWithValue("@isbnBook", ISBN);
-
-                SqlDataReader reader = query1.ExecuteReader();
-                while (reader.Read())
-                {
-                    int nameIndex = reader.GetOrdinal("Название");
-                    name = reader.GetString(nameIndex).Trim();
-                }
-                reader.Close();
-
-                SqlCommand query2 = new SqlCommand("INSERT INTO [Библиотека книг]([Идентификационный номер книги], [Номер читательского билета], [ISBN], [Название], [Дата добавления]) VALUES(@id, @userId, @isbn, @name, @dateTime)", connection);
-
-                query2.Parameters.AddWithValue("@id", count);
-                query2.Parameters.AddWithValue("@userId", App.Current.Properties[2]);
-                query2.Parameters.AddWithValue("@isbn", ISBN);
-                query2.Parameters.AddWithValue("@name", name);
-                query2.Parameters.Add("@dateTime", SqlDbType.SmallDateTime).Value = DateTime.Now;
-
-                query2.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                var text = ex.ToString();
-                Error window = new Error(text);
-                window.Show();
-            }
-            finally
-            {
-                connection.Close();
-            }
         }
     }
 }

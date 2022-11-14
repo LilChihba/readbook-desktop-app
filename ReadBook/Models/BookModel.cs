@@ -2,7 +2,7 @@
 
 namespace ReadBook
 {
-    public class Book
+    public class BookModel
     {
         public string ISBN { get; set; }
         public string Name { get; set; }

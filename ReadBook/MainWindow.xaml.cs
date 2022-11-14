@@ -7,7 +7,7 @@ namespace ReadBook
 {
     public partial class MainWindow : Window
     {
-        bool hide = false;
+        private bool hide = false;
 
         public MainWindow()
         {
@@ -39,8 +39,10 @@ namespace ReadBook
             StreamWriter srWriter = new StreamWriter(new IsolatedStorageFileStream("storage", FileMode.Create, isolatedStorage));
             App.Current.Properties[0] = null;
             App.Current.Properties[1] = null;
+            App.Current.Properties[2] = null;
             srWriter.WriteLine(App.Current.Properties[0]);
             srWriter.WriteLine(App.Current.Properties[1]);
+            srWriter.WriteLine(App.Current.Properties[2]);
 
             srWriter.Flush();
             srWriter.Close();
@@ -57,7 +59,7 @@ namespace ReadBook
 
         private void MyLibraryImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            return;
+            ContentFrame.Navigate(new Pages.MyLibrary());
         }
 
         private void RecomImg_MouseDown(object sender, MouseButtonEventArgs e)

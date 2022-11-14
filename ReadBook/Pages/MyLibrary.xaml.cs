@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows.Controls;
 
 namespace ReadBook.Pages
@@ -17,66 +20,83 @@ namespace ReadBook.Pages
             string conStr = ConfigurationManager.ConnectionStrings["ReadBookEntities"].ConnectionString;
             connection = new SqlConnection(conStr);
 
-            List<MyLibrary> books = new List<MyLibrary>();
-            int id;
-            int userId;
-            string name;
-            string author;
-            byte[] imgData;
+            List<LibraryModel> books = new List<LibraryModel>();
 
-            SqlCommand query = new SqlCommand("SELECT * FROM [Каталог книг]", connection);
+            SqlCommand query = new SqlCommand("SELECT [Библиотека книг].Название as Название, " +
+                                                     "[Библиотека книг].[Дата добавления] as [Дата добавления], " +
+                                                     "[Каталог книг].Автор as Автор, " +
+                                                     "[Каталог книг].Картинка as Картинка, " +
+                                                     "[Библиотека книг].[Идентификационный номер книги] as [Идентификационный номер книги] " +
+                                                     "FROM [Библиотека книг] JOIN [Каталог книг] on [Каталог книг].ISBN = [Библиотека книг].ISBN " +
+                                                     "WHERE [Библиотека книг].[Номер читательского билета]=@userId ", connection);
+
+            query.Parameters.AddWithValue("userId", Convert.ToInt32(App.Current.Properties[2]));
+
             connection.Open();
             SqlDataReader reader = query.ExecuteReader();
             while (reader.Read())
             {
-                int ISBNIndex = reader.GetOrdinal("ISBN");
-                isbn = reader.GetString(ISBNIndex).Trim();
-
                 int nameIndex = reader.GetOrdinal("Название");
-                name = reader.GetString(nameIndex).Trim();
+                string name = reader.GetString(nameIndex).Trim();
 
                 int authorIndex = reader.GetOrdinal("Автор");
-                author = reader.GetString(authorIndex).Trim();
+                string author = reader.GetString(authorIndex).Trim();
 
-                int publisherIndex = reader.GetOrdinal("Издательство");
-                publisher = reader.GetString(publisherIndex).Trim();
-
-                int yearPublicIndex = reader.GetOrdinal("Год издания");
-                yearPublic = reader.GetInt32(yearPublicIndex);
-
-                int pagesIndex = reader.GetOrdinal("Количество страниц");
-                pages = reader.GetInt32(pagesIndex);
-
-                int genreIndex = reader.GetOrdinal("Жанр");
-                genre = reader.GetString(genreIndex).Trim();
-
-                int descriptionIndex = reader.GetOrdinal("Описание");
-                description = reader.GetString(descriptionIndex).Trim();
+                int dTimeIndex = reader.GetOrdinal("Дата добавления");
+                DateTime dTime = reader.GetDateTime(dTimeIndex);
 
                 int imgIndex = reader.GetOrdinal("Картинка");
-                imgData = (byte[])reader[imgIndex];
+                byte[] imgData = (byte[])reader[imgIndex];
+
+                int idIndex = reader.GetOrdinal("Идентификационный номер книги");
+                string id = Convert.ToString(reader.GetInt32(idIndex));
 
                 if (imgData == null || imgData.Length == 0)
                 {
                     return;
                 }
 
-                books.Add(new BookModel()
+                var culture = new CultureInfo("ru-RU");
+
+                books.Add(new LibraryModel()
                 {
-                    ISBN = isbn,
+                    Id = id,
                     Name = name,
                     Author = author,
-                    Publisher = publisher,
-                    YearPublic = yearPublic,
-                    Pages = pages,
-                    Genre = genre,
-                    Description = description,
+                    DTime = "Дата добавления: " + dTime.ToString("dd.mm.yyyy HH:mm", culture),
                     Img = ByteConverter.convertByteToBitmapImage(imgData)
                 });
             }
             ListBooks.ItemsSource = books;
             reader.Close();
             connection.Close();
+        }
+
+        private void TrashbinImg_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            try
+            {
+                string id = ((Image)sender).Tag as string;
+
+                connection.Open();
+
+                SqlCommand query = new SqlCommand("DELETE FROM [Библиотека книг] WHERE [Идентификационный номер книги]=@id AND [Номер читательского билета]=@userId", connection);
+
+                query.Parameters.AddWithValue("@id", id);
+                query.Parameters.AddWithValue("@userId", Convert.ToInt32(App.Current.Properties[2]));
+
+                query.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                var text = ex.ToString();
+                Error window = new Error(text);
+                window.Show();
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

@@ -115,7 +115,6 @@
     <Compile Include="ResetPassword.xaml.cs">
       <DependentUpon>ResetPassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
     <Page Include="Auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

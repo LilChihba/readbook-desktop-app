@@ -50,7 +50,7 @@
                 <Grid>
                     <Polygon x:Name="PolygonMenu" Points="0, 0, -30, 30, -30, 150, 0, 180" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" MouseDown="PolygonMenu_MouseDown" Style="{StaticResource PolygonMenuMouseOver}"/>
 
-                    <Ellipse x:Name="ImageProfile" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="2" Margin="0,15,0,0" MouseDown="ImageProfile_MouseDown">
+                    <Ellipse x:Name="ImageProfile" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="2" Margin="0,15,0,0">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="pack://application:,,,/Resources/Images/VerticalMenu/avatar.png" Stretch="Uniform"/>
                         </Ellipse.Fill>
@@ -61,9 +61,6 @@
 
                     <Image x:Name="RecomImg" Style="{StaticResource RecomMouseOver}" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,250,0,0" MouseDown="RecomImg_MouseDown"/>
                     <Label Content="Рекомендуемые" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0"/>
-
-                    <Image x:Name="SearshImg" Style="{StaticResource SearchMouseOver}" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,350,0,0" MouseDown="SearshImg_MouseDown"/>
-                    <Label Content="Поиск" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,400,0,0"/>
 
                     <Image x:Name="ExitAccImg" Style="{StaticResource ExitMouseOver}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="40" Height="40" Margin="10,0,0,25" MouseDown="ExitAccImg_MouseDown"/>
                     <Label Content="Выход" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5,0,0,0"/>

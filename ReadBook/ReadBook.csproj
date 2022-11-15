@@ -233,9 +233,6 @@
     <Resource Include="Resources\Images\VerticalMenu\mylibrary.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\VerticalMenu\search.png" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -255,7 +252,6 @@
     <Resource Include="Resources\Images\VerticalMenu\mylibrary-mouseover.png" />
     <Resource Include="Resources\Images\VerticalMenu\polygonmenu-mouseover.png" />
     <Resource Include="Resources\Images\VerticalMenu\recom-mouseover.png" />
-    <Resource Include="Resources\Images\VerticalMenu\search-mouseover.png" />
     <Resource Include="Resources\Images\VerticalMenu\avatar.png" />
     <Resource Include="Resources\Images\Menu\rollup-mouseover.png" />
     <Resource Include="Resources\Images\Menu\close-mouseover.png" />

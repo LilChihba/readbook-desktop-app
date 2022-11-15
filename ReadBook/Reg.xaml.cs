@@ -237,6 +237,10 @@ namespace ReadBook
                     }
                 }
             }
+            if (e.Key.ToString() == "Space")
+            {
+                e.Handled = true;
+            }
         }
 
         private void DatebirthTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -286,9 +290,11 @@ namespace ReadBook
                 }
                 NumberTextBox.Text = text.ToString("+#(###)###-##-##");
             }
-            catch
+            catch (Exception ex)
             {
-                return;
+                var text = ex.ToString();
+                Error window = new Error(text);
+                window.Show();
             }
         }
 
@@ -296,15 +302,20 @@ namespace ReadBook
         {
             try
             {
-                if (NumberTextBox.Text[0] == '8')
+                if (NumberTextBox.Text != "")
                 {
-                    NumberTextBox.Text = "+7";
-                    NumberTextBox.Select(NumberTextBox.Text.Length, 0);
+                    if (NumberTextBox.Text[0] == '8')
+                    {
+                        NumberTextBox.Text = "+7";
+                        NumberTextBox.Select(NumberTextBox.Text.Length, 0);
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                return;
+                var text = ex.ToString();
+                Error window = new Error(text);
+                window.Show();
             }
         }
     }

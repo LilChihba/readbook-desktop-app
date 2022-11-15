@@ -60,7 +60,10 @@ namespace ReadBook
                     }
                     else
                     {
-                        textInt = Convert.ToInt64(((InputPhone)currentPage).NumberTextBox.Text);
+                        if(((InputPhone)currentPage).NumberTextBox.Text != "")
+                        {
+                            textInt = Convert.ToInt64(((InputPhone)currentPage).NumberTextBox.Text);
+                        }
                     }
                     phone = ((InputPhone)currentPage).NumberTextBox.Text = textInt.ToString("+#(###)###-##-##");
 

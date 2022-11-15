@@ -19,11 +19,14 @@ namespace ReadBook.Pages.ResetPassword
         {
             try
             {
-                if (NumberTextBox.Text[0] == '8')
+                if(NumberTextBox.Text != "")
                 {
-                    NumberTextBox.Text = "+7";
-                    NumberTextBox.Select(NumberTextBox.Text.Length, 0);
-                }
+                    if (NumberTextBox.Text[0] == '8')
+                    {
+                        NumberTextBox.Text = "+7";
+                        NumberTextBox.Select(NumberTextBox.Text.Length, 0);
+                    }
+                }    
             }
             catch (Exception ex)
             {

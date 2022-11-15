@@ -60,7 +60,10 @@ namespace ReadBook
                     }
                     else
                     {
-                        textInt = Convert.ToInt64(((InputPhone)currentPage).NumberTextBox.Text);
+                        if(((InputPhone)currentPage).NumberTextBox.Text != "")
+                        {
+                            textInt = Convert.ToInt64(((InputPhone)currentPage).NumberTextBox.Text);
+                        }
                     }
                     phone = ((InputPhone)currentPage).NumberTextBox.Text = textInt.ToString("+#(###)###-##-##");
 
@@ -103,7 +106,7 @@ namespace ReadBook
                     {
                         connection.Open();
 
-                        SqlCommand query = new SqlCommand("UPDATE [Читатели] SET [Пароль]='@password' WHERE [Номер телефона]='@phone'", connection);
+                        SqlCommand query = new SqlCommand("UPDATE [Читатели] SET [Пароль]=@password WHERE [Номер телефона]=@phone", connection);
 
                         query.Parameters.AddWithValue("@password", ((ChangePassword)currentPage).NewPassBox.Password);
                         query.Parameters.AddWithValue("@phone", phone);

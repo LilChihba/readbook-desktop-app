@@ -52,11 +52,6 @@ namespace ReadBook
             this.Close();
         }
 
-        private void ImageProfile_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            return;
-        }
-
         private void MyLibraryImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ContentFrame.Navigate(new Pages.MyLibrary());
@@ -65,11 +60,6 @@ namespace ReadBook
         private void RecomImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ContentFrame.Navigate(new Pages.Recommended());
-        }
-
-        private void SearshImg_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            return;
         }
 
         private void PolygonMenu_MouseDown(object sender, MouseButtonEventArgs e)

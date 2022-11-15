@@ -97,17 +97,16 @@ namespace ReadBook
 
                 if(access)
                 {
+                    App.Current.Properties[2] = id;
                     if (AutologinCheckBox.IsChecked == true)
                     {
                         App.Current.Properties[0] = LoginTextBox.Text.Trim();
                         App.Current.Properties[1] = PasswordTextBox.Password.Trim();
-                        App.Current.Properties[2] = id;
                     }
                     if (AutologinCheckBox.IsChecked == false)
                     {
                         App.Current.Properties[0] = null;
                         App.Current.Properties[1] = null;
-                        App.Current.Properties[2] = null;
                     }
                     MainWindow window = new MainWindow();
                     window.Show();

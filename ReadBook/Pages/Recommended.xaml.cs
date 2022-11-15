@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.IO;
 using System.Configuration;
 using System.Data;
 
@@ -94,9 +92,6 @@ namespace ReadBook.Pages
 
                 connection.Open();
 
-                SqlCommand query = new SqlCommand("SELECT MAX([Идентификационный номер книги]) FROM [Библиотека книг]", connection);
-                Int32 count = Convert.ToInt32(query.ExecuteScalar()) + 1;
-
                 SqlCommand query1 = new SqlCommand("SELECT * FROM [Каталог книг] WHERE [ISBN]=@isbnBook", connection);
 
                 query1.Parameters.AddWithValue("@isbnBook", ISBN);
@@ -109,9 +104,8 @@ namespace ReadBook.Pages
                 }
                 reader.Close();
 
-                SqlCommand query2 = new SqlCommand("IF NOT EXISTS (SELECT * FROM [Библиотека книг] WHERE [Идентификационный номер книги]=@id) INSERT INTO [Библиотека книг]([Идентификационный номер книги], [Номер читательского билета], [ISBN], [Название], [Дата добавления]) VALUES(@id, @userId, @isbn, @name, @dateTime)", connection);
+                SqlCommand query2 = new SqlCommand("IF NOT EXISTS (SELECT ISBN FROM [Библиотека книг] WHERE [ISBN]=@isbn AND [Номер читательского билета]=@userId) INSERT INTO [Библиотека книг]([Номер читательского билета], [ISBN], [Название], [Дата добавления]) VALUES(@userId, @isbn, @name, @dateTime)", connection);
 
-                query2.Parameters.AddWithValue("@id", count);
                 query2.Parameters.AddWithValue("@userId", App.Current.Properties[2]);
                 query2.Parameters.AddWithValue("@isbn", ISBN);
                 query2.Parameters.AddWithValue("@name", name);

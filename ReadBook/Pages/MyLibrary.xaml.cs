@@ -63,7 +63,7 @@ namespace ReadBook.Pages
                     Id = id,
                     Name = name,
                     Author = author,
-                    DTime = "Дата добавления: " + dTime.ToString("dd.mm.yyyy HH:mm", culture),
+                    DTime = "Дата добавления: " + dTime.ToString("dd.MM.yyyy HH:mm", culture),
                     Img = ByteConverter.convertByteToBitmapImage(imgData)
                 });
             }

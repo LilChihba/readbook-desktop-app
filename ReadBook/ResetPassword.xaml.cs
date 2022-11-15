@@ -103,7 +103,7 @@ namespace ReadBook
                     {
                         connection.Open();
 
-                        SqlCommand query = new SqlCommand("UPDATE [Читатели] SET [Пароль]='@password' WHERE [Номер телефона]='@phone'", connection);
+                        SqlCommand query = new SqlCommand("UPDATE [Читатели] SET [Пароль]=@password WHERE [Номер телефона]=@phone", connection);
 
                         query.Parameters.AddWithValue("@password", ((ChangePassword)currentPage).NewPassBox.Password);
                         query.Parameters.AddWithValue("@phone", phone);

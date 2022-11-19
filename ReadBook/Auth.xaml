@@ -67,16 +67,6 @@
                     <TextBlock Margin="0,205,0,-35" HorizontalAlignment="Center" Style="{StaticResource CustomFont}">
                         <Hyperlink Click="ResetPassBtn_Click" Foreground="White" TextDecorations="None">Забыли пароль?</Hyperlink>
                     </TextBlock>
-                    <!--<Button x:Name="ResetPassBtn" Content="Восстановление пароля" Width="200" Height="35" Background="#FFFFB100" BorderBrush="{x:Null}" Margin="0,205,0,-35" Click="ResetPassBtn_Click">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="7"/>
-                            </Style>
-                        </Button.Resources>
-                        <Button.Style>
-                            <StaticResource ResourceKey="CustomFont"/>
-                        </Button.Style>
-                    </Button>-->
                 </Grid>
             </Border>
         </Grid>

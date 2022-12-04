@@ -104,6 +104,9 @@
     <Compile Include="Pages\ResetPassword\InputPhone.xaml.cs">
       <DependentUpon>InputPhone.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ResetPassword\InputPhone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Search.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,6 +254,8 @@
     <Resource Include="Resources\Images\addimg.png" />
     <Resource Include="Resources\Images\trashbin-mouseover.png" />
     <Resource Include="Resources\Images\trashbin.png" />
+    <Resource Include="Resources\Images\VerticalMenu\search-mouseover.png" />
+    <Resource Include="Resources\Images\VerticalMenu\search.png" />
     <Content Include="SmsRu.dll" />
     <Resource Include="Resources\Images\VerticalMenu\exit-mouseover.png" />
     <Resource Include="Resources\Images\VerticalMenu\mylibrary-mouseover.png" />

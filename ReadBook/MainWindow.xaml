@@ -28,8 +28,8 @@
             </Grid.RowDefinitions>
             <Border Grid.ColumnSpan="3" Grid.Row="0" CornerRadius="10,10,0,0" Background="Transparent" MouseDown="ToolBar_MouseDown">
                 <Grid x:Name="ToolBar" VerticalAlignment="Top" Height="25">
-                    <Image x:Name="ExitImage" Style="{StaticResource CloseMouseOver}" Width="30" Height="20" Margin="965,0,0,0" MouseDown="ExitImage_MouseDown"/>
-                    <Image x:Name="RollupImage" Style="{StaticResource RollupMouseOver}" Width="30" Height="20" Margin="903,0,0,0" MouseDown="RollupImage_MouseDown"/>
+                    <Image x:Name="ExitImage" Style="{StaticResource CloseMouseOver}" Cursor="Hand" Width="30" Height="20" Margin="965,0,0,0" MouseDown="ExitImage_MouseDown"/>
+                    <Image x:Name="RollupImage" Style="{StaticResource RollupMouseOver}" Cursor="Hand" Width="30" Height="20" Margin="903,0,0,0" MouseDown="RollupImage_MouseDown"/>
                 </Grid>
             </Border>
             
@@ -48,21 +48,24 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid>
-                    <Polygon x:Name="PolygonMenu" Points="0, 0, -30, 30, -30, 150, 0, 180" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" MouseDown="PolygonMenu_MouseDown" Style="{StaticResource PolygonMenuMouseOver}"/>
+                    <Polygon x:Name="PolygonMenu" Cursor="Hand" Points="0, 0, -30, 30, -30, 150, 0, 180" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" MouseDown="PolygonMenu_MouseDown" Style="{StaticResource PolygonMenuMouseOver}"/>
 
-                    <Ellipse x:Name="ImageProfile" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="2" Margin="0,15,0,0">
+                    <Ellipse x:Name="ImageProfile" Cursor="Hand" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="2" Margin="0,15,0,0">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="pack://application:,,,/Resources/Images/VerticalMenu/avatar.png" Stretch="Uniform"/>
                         </Ellipse.Fill>
                     </Ellipse>
 
-                    <Image x:Name="MyLibraryImg" Style="{StaticResource MyLibraryImgMouseOver}" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,150,0,0" MouseDown="MyLibraryImg_MouseDown"/>
+                    <Image x:Name="MyLibraryImg" Style="{StaticResource MyLibraryImgMouseOver}" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,150,0,0" MouseDown="MyLibraryImg_MouseDown"/>
                     <Label Content="Моя библиотека" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,200,0,0"/>
 
-                    <Image x:Name="RecomImg" Style="{StaticResource RecomMouseOver}" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,250,0,0" MouseDown="RecomImg_MouseDown"/>
+                    <Image x:Name="RecomImg" Style="{StaticResource RecomMouseOver}" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,250,0,0" MouseDown="RecomImg_MouseDown"/>
                     <Label Content="Рекомендуемые" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,300,0,0"/>
 
-                    <Image x:Name="ExitAccImg" Style="{StaticResource ExitMouseOver}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="40" Height="40" Margin="10,0,0,25" MouseDown="ExitAccImg_MouseDown"/>
+                    <Image x:Name="SearchImg" Style="{StaticResource SearchMouseOver}" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Center" Width="50" Height="50" Margin="0,350,0,0" MouseDown="SearchImg_MouseDown"/>
+                    <Label Content="Поиск" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,400,0,0"/>
+
+                    <Image x:Name="ExitAccImg" Style="{StaticResource ExitMouseOver}" Cursor="Hand" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="40" Height="40" Margin="10,0,0,25" MouseDown="ExitAccImg_MouseDown"/>
                     <Label Content="Выход" Style="{StaticResource CustomFont}" FontSize="14" Foreground="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5,0,0,0"/>
                 </Grid>
             </Border>

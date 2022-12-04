@@ -167,5 +167,20 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="SearchMouseOver" TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearchImg}" Value="True">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/search-mouseover.png"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <BlurEffect Radius="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearchImg}" Value="False">
+                    <Setter Property="Source" Value="pack://application:,,,/Resources/Images/VerticalMenu/search.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

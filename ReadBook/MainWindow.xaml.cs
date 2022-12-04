@@ -76,5 +76,10 @@ namespace ReadBook
                 hide = false;
             }
         }
+
+        private void SearchImg_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ContentFrame.Navigate(new Pages.Search());
+        }
     }
 }

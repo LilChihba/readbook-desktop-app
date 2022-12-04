@@ -50,7 +50,7 @@
                 <Grid>
                     <Polygon x:Name="PolygonMenu" Cursor="Hand" Points="0, 0, -30, 30, -30, 150, 0, 180" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" MouseDown="PolygonMenu_MouseDown" Style="{StaticResource PolygonMenuMouseOver}"/>
 
-                    <Ellipse x:Name="ImageProfile" Cursor="Hand" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="2" Margin="0,15,0,0">
+                    <Ellipse x:Name="ImageProfile" Cursor="Hand" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" Stroke="Black" StrokeThickness="2" Margin="0,15,0,0" MouseDown="ImageProfile_MouseDown">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="pack://application:,,,/Resources/Images/VerticalMenu/avatar.png" Stretch="Uniform"/>
                         </Ellipse.Fill>

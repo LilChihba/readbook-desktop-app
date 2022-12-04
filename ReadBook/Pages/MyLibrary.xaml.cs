@@ -28,7 +28,7 @@ namespace ReadBook.Pages
                                                      "FROM [Библиотека книг] JOIN [Каталог книг] on [Каталог книг].ISBN = [Библиотека книг].ISBN " +
                                                      "WHERE [Библиотека книг].[Номер читательского билета]=@userId ", connection);
 
-            query.Parameters.AddWithValue("userId", Convert.ToInt32(App.Current.Properties[2]));
+            query.Parameters.AddWithValue("@userId", Convert.ToInt32(App.Current.Properties[2]));
 
             connection.Open();
             SqlDataReader reader = query.ExecuteReader();

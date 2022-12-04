@@ -1,13 +1,16 @@
-﻿using System.IO;
+﻿using System.Data.SqlClient;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Windows.Input;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ReadBook
 {
     public partial class MainWindow : Window
     {
         private bool hide = false;
+        private SqlConnection connection;
 
         public MainWindow()
         {
@@ -80,6 +83,12 @@ namespace ReadBook
         private void SearchImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ContentFrame.Navigate(new Pages.Search());
+        }
+
+        private void ImageProfile_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Profile window = new Profile();
+            window.Show();
         }
     }
 }

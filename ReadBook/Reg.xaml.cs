@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 
@@ -106,14 +107,16 @@ namespace ReadBook
                     {
                         SqlCommand query1 = new SqlCommand("SELECT Count(*) FROM Читатели", connection);
                         Int32 count = Convert.ToInt32(query1.ExecuteScalar()) + 1;
-
+                        var culture = new CultureInfo("en-US");
                         SqlCommand query2 = new SqlCommand("INSERT INTO Читатели([Номер читательского билета], Имя, Фамилия, Отчество, [Дата рождения], [Номер телефона], Логин, Пароль) VALUES(@count, @fname, @lname, @mname, @dateb, @number, @login, @password)", connection);
+
+                        DateTime date = Convert.ToDateTime(DatebirthTextBox.Text);
 
                         query2.Parameters.AddWithValue("@count", count);
                         query2.Parameters.AddWithValue("@fname", FnameTextBox.Text);
                         query2.Parameters.AddWithValue("@lname", LnameTextBox.Text);
                         query2.Parameters.AddWithValue("@mname", MnameTextBox.Text);
-                        query2.Parameters.AddWithValue("@dateb", DatebirthTextBox.Text);
+                        query2.Parameters.AddWithValue("@dateb", date.ToString("MM.dd.yyyy", culture));
                         query2.Parameters.AddWithValue("@number", NumberTextBox.Text);
                         query2.Parameters.AddWithValue("@login", LoginTextBox.Text);
                         query2.Parameters.AddWithValue("@password", PasswordTextBox.Password);

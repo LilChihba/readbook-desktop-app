@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,19 +9,16 @@ using System.Windows.Controls;
 
 namespace ReadBook.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для MyLibrary.xaml
-    /// </summary>
     public partial class MyLibrary : Page
     {
         SqlConnection connection;
+        ObservableCollection<LibraryModel> books = new ObservableCollection<LibraryModel>();
+
         public MyLibrary()
         {
             InitializeComponent();
             string conStr = ConfigurationManager.ConnectionStrings["ReadBookEntities"].ConnectionString;
             connection = new SqlConnection(conStr);
-
-            List<LibraryModel> books = new List<LibraryModel>();
 
             SqlCommand query = new SqlCommand("SELECT [Библиотека книг].Название as Название, " +
                                                      "[Библиотека книг].[Дата добавления] as [Дата добавления], " +
@@ -76,16 +74,17 @@ namespace ReadBook.Pages
         {
             try
             {
-                string id = ((Image)sender).Tag as string;
+                var model = ((Image)sender).Tag as LibraryModel;
 
                 connection.Open();
 
                 SqlCommand query = new SqlCommand("DELETE FROM [Библиотека книг] WHERE [Идентификационный номер книги]=@id AND [Номер читательского билета]=@userId", connection);
 
-                query.Parameters.AddWithValue("@id", id);
+                query.Parameters.AddWithValue("@id", model.Id);
                 query.Parameters.AddWithValue("@userId", Convert.ToInt32(App.Current.Properties[2]));
 
                 query.ExecuteNonQuery();
+                books.Remove(model);
             }
             catch (Exception ex)
             {

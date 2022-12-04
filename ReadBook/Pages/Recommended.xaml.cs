@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Controls;
 using System.Configuration;
 using System.Data;
-
+using System.Collections.ObjectModel;
 
 namespace ReadBook.Pages
 {
@@ -17,7 +17,8 @@ namespace ReadBook.Pages
             string conStr = ConfigurationManager.ConnectionStrings["ReadBookEntities"].ConnectionString;
             connection = new SqlConnection(conStr);
 
-            List<BookModel> books = new List<BookModel>();
+            ObservableCollection<BookModel> books = new ObservableCollection<BookModel>();
+
             string isbn;
             string name;
             string author;

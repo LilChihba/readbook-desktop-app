@@ -29,7 +29,7 @@
                 <TextBlock x:Name="ErrorTextBlock" Style="{StaticResource CustomFont}" Foreground="#FF3E3E3E" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </ScrollViewer>
 
-            <Button x:Name="OkeyButton" Content="ОК" Grid.Row="2" Width="70" Height="40" BorderBrush="{x:Null}" Background="#FFFFB100" Click="OkeyButton_Click">
+            <Button x:Name="OkeyButton" Cursor="Hand" Content="ОК" Grid.Row="2" Width="70" Height="40" BorderBrush="{x:Null}" Background="#FFFFB100" Click="OkeyButton_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

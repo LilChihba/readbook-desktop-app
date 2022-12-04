@@ -28,8 +28,8 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.ColumnSpan="3" x:Name="ToolBar" VerticalAlignment="Top" Background="Transparent" MouseDown="ToolBar_MouseDown" Height="25">
-                <Image x:Name="ExitImage" Style="{StaticResource CloseMouseOver}" Width="30" Height="20" Margin="470,0,0,0" MouseDown="ExitImage_MouseDown"/>
-                <Image x:Name="RollupImage" Style="{StaticResource RollupMouseOver}" Width="30" Height="20" Margin="408,0,0,0" MouseDown="RollupImage_MouseDown"/>
+                <Image x:Name="ExitImage" Style="{StaticResource CloseMouseOver}" Cursor="Hand" Width="30" Height="20" Margin="470,0,0,0" MouseDown="ExitImage_MouseDown"/>
+                <Image x:Name="RollupImage" Style="{StaticResource RollupMouseOver}" Cursor="Hand" Width="30" Height="20" Margin="408,0,0,0" MouseDown="RollupImage_MouseDown"/>
             </Grid>
 
             <Label Content="Создать учётную запись" Style="{StaticResource LabelBorder}" FontSize="27" Foreground="#FFFFB100" FontWeight="ExtraBold" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="350" Height="50" Margin="0,25,0,0"/>
@@ -59,14 +59,14 @@
             <Label Content="Пароль" Style="{StaticResource CustomFont}" Foreground="White" Grid.Row="1" Grid.Column="1" Width="90" Height="30" Margin="0,237,165,0"/>
             <PasswordBox x:Name="PasswordTextBox" Style="{StaticResource CustomFont}" Foreground="#FF5A5A5A" Padding="4,0,0,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MaxLength="50" Grid.Row="1" Grid.Column="1" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,275,0,0" PreviewKeyDown="PasswordTextBox_PreviewKeyDown" PreviewTextInput="PasswordTextBox_PreviewTextInput"/>
 
-            <Button x:Name="BtnBack" Grid.Column="1" Grid.Row="1" Content="Назад" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFB100" BorderBrush="{x:Null}" Margin="0,375,200,0" Click="BtnBack_Click">
+            <Button x:Name="BtnBack" Grid.Column="1" Grid.Row="1" Content="Назад" Style="{StaticResource CustomFont}" Cursor="Hand" Width="175" Height="35" Background="#FFFFB100" BorderBrush="{x:Null}" Margin="0,375,200,0" Click="BtnBack_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="BtnReg" Grid.Column="1" Grid.Row="1" Content="Регистрация" Style="{StaticResource CustomFont}" Width="175" Height="35" Background="#FFFFB100" BorderBrush="{x:Null}" Margin="200,375,0,0" Click="BtnReg_Click">
+            <Button x:Name="BtnReg" Grid.Column="1" Grid.Row="1" Content="Регистрация" Style="{StaticResource CustomFont}" Cursor="Hand" Width="175" Height="35" Background="#FFFFB100" BorderBrush="{x:Null}" Margin="200,375,0,0" Click="BtnReg_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7"/>
